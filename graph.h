@@ -30,7 +30,11 @@ public:
   EdgeNode();
   EdgeNode(int, int);
 
-  ~EdgeNode();
+		EdgeNode();
+		EdgeNode(EdgeNode&);
+		EdgeNode(int, int);
+
+		~EdgeNode();
 };
 
 /**
@@ -41,11 +45,14 @@ public:
   @author Jakub Brzezowski
 */
 class Graph {
-
-public:
-  bool directed;
-  int nodeNumber;
-  EdgeNode **edges; /*!< Container with edges and nodes*/
+	private:
+		bool directed;
+		const int nodeNumber;
+	public:
+		EdgeNode* edges[nodeNumber + 1];	/*!< Container with edges and nodes*/
+		Graph(bool,int);
+		Graph(Graph&);
+		~Graph();
 
   Graph(bool, int);
   ~Graph();
@@ -58,5 +65,7 @@ void InitVars(bool discovered[], int distance[], int parent[], int graphSize);
 void DijkstraAlgorithm(Graph *g, int parent[], int distance[], int start);
 
 void PrintShortestPath(int v, int parent[], int graphNumber);
+void PrintDistances(int start, int distance[], int graphNumber);
+void TestGraph(void);
 
 #endif // !GRAPH_H
