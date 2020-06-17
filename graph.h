@@ -28,11 +28,8 @@ public:
   EdgeNode *next; /*!<Pointer to next node, which represents edge*/
 
   EdgeNode();
+  EdgeNode(EdgeNode&);
   EdgeNode(int, int);
-
-		EdgeNode();
-		EdgeNode(EdgeNode&);
-		EdgeNode(int, int);
 
 		~EdgeNode();
 };
@@ -45,16 +42,13 @@ public:
   @author Jakub Brzezowski
 */
 class Graph {
-	private:
+  public:
 		bool directed;
-		const int nodeNumber;
-	public:
-		EdgeNode* edges[nodeNumber + 1];	/*!< Container with edges and nodes*/
-		Graph(bool,int);
-		Graph(Graph&);
-		~Graph();
+		int nodeNumber;
+		EdgeNode** edges;	/*!< Container with edges and nodes*/
 
-  Graph(bool, int);
+  Graph(bool,int);
+  Graph(Graph&);
   ~Graph();
 
   void InsertEdge(int, int, int, bool);
