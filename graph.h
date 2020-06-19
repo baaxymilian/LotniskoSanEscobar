@@ -15,7 +15,7 @@
 
 /**
   @class EdgeNote
-  @brief Impelementation of basics elements of graphs in combination simplified
+  @brief Implementation of basics elements of graphs in combination simplified
   usage in graph class.
   @version 1.0
   @date 2020-06-05
@@ -28,26 +28,27 @@ public:
   EdgeNode *next; /*!<Pointer to next node, which represents edge*/
 
   EdgeNode();
+  EdgeNode(EdgeNode&);
   EdgeNode(int, int);
 
-  ~EdgeNode();
+		~EdgeNode();
 };
 
 /**
   @class Graph
-  @brief Impelementation of mathematical graph
+  @brief Implementation of mathematical graph
   @version 1.0
   @date 2020-06-05
   @author Jakub Brzezowski
 */
 class Graph {
+  public:
+		bool directed;
+		int nodeNumber;
+		EdgeNode** edges;	/*!< Container with edges and nodes*/
 
-public:
-  bool directed;
-  int nodeNumber;
-  EdgeNode **edges; /*!< Container with edges and nodes*/
-
-  Graph(bool, int);
+  Graph(bool,int);
+  Graph(Graph&);
   ~Graph();
 
   void InsertEdge(int, int, int, bool);
@@ -58,5 +59,7 @@ void InitVars(bool discovered[], int distance[], int parent[], int graphSize);
 void DijkstraAlgorithm(Graph *g, int parent[], int distance[], int start);
 
 void PrintShortestPath(int v, int parent[], int graphNumber);
+void PrintDistances(int start, int distance[], int graphNumber);
+void TestGraph(void);
 
 #endif // !GRAPH_H

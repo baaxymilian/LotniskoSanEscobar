@@ -19,8 +19,12 @@ int main() {
     // Y - łączna liczba wierzchołków
     // Z - łączna liczba krawędzi
     input_file >> X >> Y >> Z;
-    Graph graph(0, Z);
+    Graph* graph = new Graph(false, Z);
     int temp_node_a, temp_node_b, temp_edge_weight;
+
+    int parent[Z + 1];
+    int distance[Z + 1];
+
     for (int i = 0; i < Z; i++) {
       input_file >> temp_node_a >> temp_node_b >> temp_edge_weight;
       try {
@@ -37,13 +41,21 @@ int main() {
         input_file.close();
         return 1;
       }
-      graph.InsertEdge(temp_node_a, temp_node_b, temp_edge_weight, 0);
+      graph->InsertEdge(temp_node_a, temp_node_b, temp_edge_weight, 0);
     }
     // sprawdzenie poprawnosci wczytanych wartosci
     // indeks 0 - pierwszy wierzcholek
     // indeks 1 - drugi wierzcholek
     // indeks 2 - waga polaczenia
-    graph.print();
+    graph->print();
+
+    DijkstraAlgorithm(graph, parent, distance, 1);
+
+    PrintShortestPath(5, parent, Z);
+
+    PrintDistances(1, distance, Z);
+
+    TestGraph();
 
     input_file.close();
   } else {
