@@ -16,10 +16,7 @@ int main() {
     }
 
     std::cout << "Plik otwarty poprawnie" << std::endl;
-    // tu operacje na pliku (zapis/odczyt)
-    // X - wierzchołek startowy
-    // Y - łączna liczba wierzchołków
-    // Z - łączna liczba krawędzi
+
     input_file >> starting_node >> total_nodes >> total_edges;
 
     if (EDGES_MAX < total_edges) {
