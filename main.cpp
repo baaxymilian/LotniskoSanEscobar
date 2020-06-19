@@ -6,8 +6,7 @@
 constexpr auto EDGES_MAX = 1024;
 
 int main() {
-  std::fstream input_file;
-  input_file.open("input.txt", std::ios::in | std::ios::out);
+  std::ifstream input_file("input.txt");
 
   int X, Y, Z;
 
@@ -63,10 +62,8 @@ int main() {
 
     } catch (const char *msg) {
         std::cerr << msg << std::endl;
-        input_file.close();
         return 1;
     }
 
-    input_file.close();
   return 0;
 }
