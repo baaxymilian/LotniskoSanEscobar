@@ -15,6 +15,7 @@ EdgeNode::EdgeNode(int number, int weight) {
 EdgeNode::EdgeNode(EdgeNode& parent) {
 	this->number = parent.number;
 	this->weight = parent.weight;
+	this->next = nullptr;
 }
 
 Graph::Graph(bool directed, int nodeNumber) {
@@ -33,6 +34,9 @@ Graph::Graph(Graph& parent) {
 
 	this->directed = parent.directed;
 	this->nodeNumber = parent.nodeNumber;
+	this->edges = new EdgeNode * [nodeNumber + 1];
+	for (int i = 0; i < this->nodeNumber + 1; i++)
+		this->edges[i] = new EdgeNode;
 }
 
 void Graph::InsertEdge(int x, int y, int weight, bool directed) {
