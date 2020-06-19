@@ -22,14 +22,14 @@
   @author Jakub Brzezowski
 */
 class EdgeNode {
-public:
-  int number;     /*!<Number of node*/
-  int weight;     /*!<Weight of edge*/
-  EdgeNode *next; /*!<Pointer to next node, which represents edge*/
+  public:
+    int number;     /*!<Number of node*/
+    int weight;     /*!<Weight of edge*/
+    EdgeNode *next; /*!<Pointer to next node, which represents edge*/
 
-  EdgeNode();
-  EdgeNode(EdgeNode&);
-  EdgeNode(int, int);
+    EdgeNode();
+    EdgeNode(EdgeNode&);
+    EdgeNode(int, int);
 };
 
 /**
@@ -45,11 +45,11 @@ class Graph {
 		int nodeNumber;
 		EdgeNode** edges;	/*!< Container with edges and nodes*/
 
-  Graph(bool,int);
-  Graph(Graph&);
+    Graph(bool,int);
+    Graph(Graph&);
 
-  void InsertEdge(int, int, int, bool);
-  void print() const;
+    void InsertEdge(int, int, int, bool);
+    void print() const;
 };
 
 void InitVars(bool discovered[], int distance[], int parent[], int graphSize);
