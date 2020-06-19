@@ -8,8 +8,6 @@ constexpr auto EDGES_MAX = 1024;
 int main() {
   std::ifstream input_file("input.txt");
 
-  int starting_node, total_nodes, total_edges;
-
   try {
     if (!input_file.good()) {
       throw "File was not opened succesfully";
@@ -17,6 +15,7 @@ int main() {
 
     std::cout << "File was successfully opened" << std::endl;
 
+    int starting_node, total_nodes, total_edges;
     input_file >> starting_node >> total_nodes >> total_edges;
 
     if (EDGES_MAX < total_edges) {
