@@ -8,7 +8,7 @@ constexpr auto EDGES_MAX = 1024;
 int main() {
   std::ifstream input_file("input.txt");
 
-  int X, Y, Z;
+  int starting_node, total_nodes, total_edges;
 
   try {
     if (!input_file.good()) {
@@ -20,22 +20,22 @@ int main() {
     // X - wierzchołek startowy
     // Y - łączna liczba wierzchołków
     // Z - łączna liczba krawędzi
-    input_file >> X >> Y >> Z;
+    input_file >> starting_node >> total_nodes >> total_edges;
 
-    if (EDGES_MAX < Z) {
+    if (EDGES_MAX < total_edges) {
       throw "The number of edges it too high. Numer of edges is limited to: 1024";
     }
 
-    Graph* graph = new Graph(false, Z);
+    Graph* graph = new Graph(false, total_edges);
     int temp_node_a, temp_node_b, temp_edge_weight;
 
-    int parent[Z + 1];
-    int distance[Z + 1];
+    int parent[total_edges + 1];
+    int distance[total_edges + 1];
 
-    for (int i = 0; i < Z; i++) {
+    for (int i = 0; i < total_edges; i++) {
       input_file >> temp_node_a >> temp_node_b >> temp_edge_weight;
       
-        if ((temp_node_a > Y) || (temp_node_b > Y)) {
+        if ((temp_node_a > total_nodes) || (temp_node_b > total_nodes)) {
           throw "Nieprawidlowy numer wierzcholka!";
         } else if (temp_node_a == temp_node_b) {
           throw "Nie mozna utworzyc autostrady wychodzacej i wchodzacej do "
@@ -54,9 +54,9 @@ int main() {
 
       DijkstraAlgorithm(graph, parent, distance, 1);
 
-      PrintShortestPath(5, parent, Z);
+      PrintShortestPath(5, parent, total_edges);
 
-      PrintDistances(1, distance, Z);
+      PrintDistances(1, distance, total_edges);
 
       TestGraph();
 
