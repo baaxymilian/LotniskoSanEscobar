@@ -23,7 +23,7 @@ int main() {
       throw "The number of edges it too high. Numer of edges is limited to: 1024";
     }
 
-    Graph* graph = new Graph(false, total_edges);
+    Graph *graph = new Graph(false, total_edges);
     int temp_node_a, temp_node_b, temp_edge_weight;
 
     int parent[total_edges + 1];
@@ -32,15 +32,15 @@ int main() {
     for (int i = 0; i < total_edges; i++) {
       input_file >> temp_node_a >> temp_node_b >> temp_edge_weight;
       
-        if ((temp_node_a > total_nodes) || (temp_node_b > total_nodes)) {
-          throw "Nieprawidlowy numer wierzcholka!";
-        } else if (temp_node_a == temp_node_b) {
-          throw "Nie mozna utworzyc autostrady wychodzacej i wchodzacej do "
-                "tego samego miasta";
-        } else if (temp_edge_weight <= 0) {
-          throw "Podano niedodatnia wage krawedzi";
-        }
-      } 
+      if ((temp_node_a > total_nodes) || (temp_node_b > total_nodes)) {
+        throw "Nieprawidlowy numer wierzcholka!";
+      } else if (temp_node_a == temp_node_b) {
+        throw "Nie mozna utworzyc autostrady wychodzacej i wchodzacej do "
+              "tego samego miasta";
+      } else if (temp_edge_weight <= 0) {
+        throw "Podano niedodatnia wage krawedzi";
+      }
+    } 
       graph->InsertEdge(temp_node_a, temp_node_b, temp_edge_weight, 0);
     
       // sprawdzenie poprawnosci wczytanych wartosci
