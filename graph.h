@@ -41,11 +41,11 @@ class EdgeNode {
 */
 class Graph {
   public:
-		bool directed;
-		int nodeNumber;
-		EdgeNode** edges;	/*!< Container with edges and nodes*/
+    bool directed;
+    int nodeNumber;
+    EdgeNode** edges;	/*!< Container with edges and nodes*/
 
-    Graph(bool,int);
+    Graph(bool, int);
     Graph(Graph&);
 
     void InsertEdge(int, int, int, bool);
