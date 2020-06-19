@@ -30,8 +30,6 @@ public:
   EdgeNode();
   EdgeNode(EdgeNode&);
   EdgeNode(int, int);
-
-		~EdgeNode();
 };
 
 /**
@@ -49,7 +47,6 @@ class Graph {
 
   Graph(bool,int);
   Graph(Graph&);
-  ~Graph();
 
   void InsertEdge(int, int, int, bool);
   void print() const;

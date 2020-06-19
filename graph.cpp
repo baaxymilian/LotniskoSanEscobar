@@ -17,8 +17,6 @@ EdgeNode::EdgeNode(EdgeNode& parent) {
 	this->weight = parent.weight;
 }
 
-EdgeNode::~EdgeNode() {}
-
 Graph::Graph(bool directed, int nodeNumber) {
 
 	this->directed = directed;
@@ -36,8 +34,6 @@ Graph::Graph(Graph& parent) {
 	this->directed = parent.directed;
 	this->nodeNumber = parent.nodeNumber;
 }
-
-Graph::~Graph() {}
 
 void Graph::InsertEdge(int x, int y, int weight, bool directed) {
 	if (x > 0 && x < (this->nodeNumber + 1) && y>0 && y < (this->nodeNumber + 1)) {
