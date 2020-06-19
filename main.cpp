@@ -15,7 +15,7 @@ int main() {
       throw "File was not opened succesfully";
     }
 
-    std::cout << "Plik otwarty poprawnie" << std::endl;
+    std::cout << "File was successfully opened" << std::endl;
 
     input_file >> starting_node >> total_nodes >> total_edges;
 
@@ -33,12 +33,11 @@ int main() {
       input_file >> temp_node_a >> temp_node_b >> temp_edge_weight;
       
       if ((temp_node_a > total_nodes) || (temp_node_b > total_nodes)) {
-        throw "Nieprawidlowy numer wierzcholka!";
+        throw "Incorent number of a node";
       } else if (temp_node_a == temp_node_b) {
-        throw "Nie mozna utworzyc autostrady wychodzacej i wchodzacej do "
-              "tego samego miasta";
+        throw "You cannot create inbound and outbound highway from the same city";
       } else if (temp_edge_weight <= 0) {
-        throw "Podano niedodatnia wage krawedzi";
+        throw "Not positive weight was given";
       }
     } 
       graph->InsertEdge(temp_node_a, temp_node_b, temp_edge_weight, 0);
