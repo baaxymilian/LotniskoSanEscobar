@@ -8,7 +8,7 @@ constexpr auto EDGES_MAX = 1024;
 int main() {
   std::fstream input_file;
   input_file.open("input.txt", std::ios::in | std::ios::out);
-  std::string display;
+
   int X, Y, Z;
 
   try {
