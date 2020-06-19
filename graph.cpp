@@ -28,10 +28,6 @@ Graph::Graph(bool directed, int nodeNumber) {
 }
 
 Graph::Graph(Graph& parent) {
-	int x;
-	int y;
-	int weight;
-
 	this->directed = parent.directed;
 	this->nodeNumber = parent.nodeNumber;
 	this->edges = new EdgeNode * [nodeNumber + 1];
