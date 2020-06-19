@@ -32,7 +32,7 @@ int main() {
       input_file >> temp_node_a >> temp_node_b >> temp_edge_weight;
       
       if ((temp_node_a > total_nodes) || (temp_node_b > total_nodes)) {
-        throw "Incorent number of a node";
+        throw "Incorrect number of a node";
       } else if (temp_node_a == temp_node_b) {
         throw "You cannot create inbound and outbound highway from the same city";
       } else if (temp_edge_weight <= 0) {
