@@ -25,8 +25,8 @@ int main() {
     Graph *graph = new Graph(false, total_edges);
     int temp_node_a, temp_node_b, temp_edge_weight;
 
-    int parent[total_edges + 1];
-    int distance[total_edges + 1];
+    int *parent = new int [total_edges + 1]; // probably we want to initialize it
+    int *distance = new int [total_edges + 1]; // probably we want to initialize it
 
     for (int i = 0; i < total_edges; i++) {
       input_file >> temp_node_a >> temp_node_b >> temp_edge_weight;
@@ -54,6 +54,12 @@ int main() {
       PrintDistances(1, distance, total_edges);
 
       TestGraph();
+
+      delete [] parent;
+      parent = nullptr;
+
+      delete [] distance;
+      distance = nullptr;
 
     } catch (const char *msg) {
       std::cerr << msg << std::endl;
