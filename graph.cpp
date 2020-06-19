@@ -3,13 +3,13 @@
 EdgeNode::EdgeNode() {
 	this->number = 0;
 	this->weight = 0;
-	this->next = NULL;
+	this->next = nullptr;
 }
 
 EdgeNode::EdgeNode(int number, int weight) {
 	this->number = number;
 	this->weight = weight;
-	this->next = NULL;
+	this->next = nullptr;
 }
 
 EdgeNode::EdgeNode(EdgeNode& parent) {
