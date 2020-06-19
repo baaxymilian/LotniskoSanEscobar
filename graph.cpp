@@ -23,9 +23,9 @@ Graph::Graph(bool directed, int nodeNumber) {
 
 	this->directed = directed;
 	this->nodeNumber = nodeNumber;
-
-	for (int i = 1; i < this->nodeNumber + 1; i++)
-		this->edges[i] = NULL;
+	this->edges = new EdgeNode* [nodeNumber + 1];
+	for (int i = 0; i < this->nodeNumber + 1; i++)
+		this->edges[i] = new EdgeNode;
 }
 
 Graph::Graph(Graph& parent) {
@@ -55,10 +55,10 @@ void Graph::InsertEdge(int x, int y, int weight, bool directed) {
 
 void Graph::print() const{
 	for (int v = 1; v < this->nodeNumber + 1; v++) {
-		if (this->edges[v] != NULL) {
+		if (this->edges[v] != nullptr) {
 			std::cout << "Vertex" << v << " has neighbours: " << std::endl;
 			EdgeNode* current = this->edges[v];
-			while (current != NULL) {
+			while (current != nullptr) {
 				std::cout << current->number << " (" << current->weight << ")" << std::endl;
 				current = current->next;
 			}
@@ -68,7 +68,7 @@ void Graph::print() const{
 
 void InitVars(bool discovered[], int distance[], int parent[], int graphSize) {
   for (int i = 1; i < graphSize + 1; i++) {
-    discovered[i] = false;
+	discovered[i] = false;
     distance[i] = std::numeric_limits<int>::max();
     parent[i] = -1;
   }
@@ -79,7 +79,7 @@ void DijkstraAlgorithm(Graph* g, int parent[], int distance[], int start) {
 	bool discovered[g->nodeNumber + 1];
 	EdgeNode* tmp;
 
-	int vTMP;
+	int vTMP = 0;
 	int vNeighbour;
 	int weight;
 	int smallestDistance;
@@ -87,10 +87,9 @@ void DijkstraAlgorithm(Graph* g, int parent[], int distance[], int start) {
 	InitVars(discovered, distance, parent, g->nodeNumber);
 
 	while (discovered[vTMP] == false) {
-		discovered[vTMP] == true;
 		tmp = g->edges[vTMP];
 
-		while (tmp != NULL) {
+		while (tmp != nullptr) {
 			vNeighbour = tmp->number;
 			weight = tmp->weight;
 			if ((distance[vTMP] + weight) < distance[vNeighbour]) {
@@ -108,6 +107,11 @@ void DijkstraAlgorithm(Graph* g, int parent[], int distance[], int start) {
 			}
 		}
 	}
+	/* DO PÓŹNIEJSZEGO UŻYCIA
+	for (int i = 0; i < g->nodeNumber + 1; i++)
+      delete[] discovered[i];
+  		delete[] discovered;
+		  */
 }
 
 void PrintShortestPath(int v, int parent[], int graphNumber) {

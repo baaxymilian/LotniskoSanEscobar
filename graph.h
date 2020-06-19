@@ -15,7 +15,7 @@
 
 /**
   @class EdgeNote
-  @brief Impelementation of basics elements of graphs in combination simplified
+  @brief Implementation of basics elements of graphs in combination simplified
   usage in graph class.
   @version 1.0
   @date 2020-06-05
@@ -36,7 +36,7 @@ public:
 
 /**
   @class Graph
-  @brief Impelementation of mathematical graph
+  @brief Implementation of mathematical graph
   @version 1.0
   @date 2020-06-05
   @author Jakub Brzezowski
