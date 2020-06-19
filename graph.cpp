@@ -69,7 +69,7 @@ void InitVars(bool discovered[], int distance[], int parent[], int graphSize) {
 
 void DijkstraAlgorithm(Graph* g, int parent[], int distance[], int start) {
 	bool *discovered = new bool [g->nodeNumber + 1];
-	EdgeNode *tmp;
+	EdgeNode *tmp = nullptr;
 
 	int vTMP = 0;
 	int vNeighbour;
