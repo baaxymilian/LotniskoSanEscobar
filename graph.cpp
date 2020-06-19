@@ -143,6 +143,5 @@ void TestGraph(void) {
 	PrintShortestPath(5, parent, nodeNumber);
 
 	//Wypisz dystanse od wierzchołka startowego do wszystkich innych.
-	//Wypisz dystanse od wierzchołka startowego do wszystkich innych.
 	PrintDistances(start, distance, nodeNumber);
 }
