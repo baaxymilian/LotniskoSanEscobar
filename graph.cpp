@@ -68,7 +68,7 @@ void InitVars(bool discovered[], int distance[], int parent[], int graphSize) {
 }
 
 void DijkstraAlgorithm(Graph* g, int parent[], int distance[], int start) {
-	bool discovered[g->nodeNumber + 1];
+	bool *discovered = new bool [g->nodeNumber + 1];
 	EdgeNode *tmp;
 
 	int vTMP = 0;
@@ -99,11 +99,9 @@ void DijkstraAlgorithm(Graph* g, int parent[], int distance[], int start) {
 			}
 		}
 	}
-	/* DO PÓŹNIEJSZEGO UŻYCIA
-	for (int i = 0; i < g->nodeNumber + 1; i++)
-      delete[] discovered[i];
-  		delete[] discovered;
-		  */
+
+	delete [] discovered;
+	discovered = nullptr;
 }
 
 void PrintShortestPath(int v, int parent[], int graphNumber) {
