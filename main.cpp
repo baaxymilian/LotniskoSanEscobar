@@ -25,8 +25,8 @@ int main() {
     Graph *graph = new Graph(false, total_edges);
     int temp_node_a, temp_node_b, temp_edge_weight;
 
-    int *parent = new int [total_edges + 1]; // probably we want to initialize it
-    int *distance = new int [total_edges + 1]; // probably we want to initialize it
+    int *parent = new int [total_edges + 1]; // initialized by InitVars()
+    int *distance = new int [total_edges + 1]; // initialized by InitVars()
 
     for (int i = 0; i < total_edges; i++) {
       input_file >> temp_node_a >> temp_node_b >> temp_edge_weight;
