@@ -101,7 +101,7 @@ void DijkstraAlgorithm(Graph* g, int parent[], int distance[], int start) {
 	}
 
 	delete [] discovered;
-	delete (discovered);
+	discovered = NULL;
 }
 
 void PrintShortestPath(int v, int parent[], int graphNumber) {
