@@ -11,25 +11,13 @@ install:
   # C++17
   - sudo apt-get install -qq g++-6
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
-  # cppcheck
   - sudo apt-get install -qq cppcheck
-  - sudo apt-get install -qq valgrind
-  - sudo pip install codecov
-  - sudo ./install_oclint.sh
+  #- sudo apt-get install -qq valgrind
 
 script: 
   # Build and run this project
   - g++ main.cpp graph.cpp -std=c++17 -fprofile-arcs -ftest-coverage -o dikstra
   - cppcheck --quiet --error-exitcode=1 .
-  - ./do_oclint.sh
   #- valgrind --leak-check=full -v --show-reachable=yes --log-file=memcheck.log ./dikstra
   #- cat memcheck.log
-  - ./dikstra
-    # Codecov
-  - gcov -n -o . main.cpp > /dev/null
-  - gcov -n -o . graph.cpp > /dev/null
-  - codecov
-
-after_success:
-  # Codecov
-  - bash <(curl -s https://codecov.io/bash)
+  #- ./dikstra
