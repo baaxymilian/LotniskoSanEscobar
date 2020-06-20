@@ -15,7 +15,7 @@ install:
   - sudo apt-get install -qq cppcheck
   - sudo apt-get install -qq valgrind
   - sudo pip install codecov
-  - ./install_oclint.sh
+  - sudo ./install_oclint.sh
 
 script: 
   # Build and run this project
