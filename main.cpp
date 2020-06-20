@@ -36,7 +36,7 @@ int main() {
       } else if (temp_node_a == temp_node_b) {
         throw "You cannot create inbound and outbound highway from the same city";
       } else if (temp_edge_weight <= 0) {
-        throw "Not positive weight was given";
+        throw "Weight must be positive";
       }
     } 
       graph->InsertEdge(temp_node_a, temp_node_b, temp_edge_weight, 0);
