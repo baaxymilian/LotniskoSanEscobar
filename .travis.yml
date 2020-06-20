@@ -23,7 +23,7 @@ script:
   - cppcheck --quiet --error-exitcode=1 .
   #- valgrind --leak-check=full -v --show-reachable=yes --log-file=memcheck.log ./dikstra
   #- cat memcheck.log
-  #- ./travis_gcc_cpp17_cppcheck
+  - ./dikstra
     # Codecov
   - gcov -n -o . main.cpp > /dev/null
   - gcov -n -o . graph.cpp > /dev/null
