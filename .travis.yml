@@ -18,10 +18,10 @@ install:
 
 script: 
   # Build and run this project
-  - g++ main.cpp graph.cpp -std=c++17 -o travis_gcc_cpp17_cppcheck
+  - g++ main.cpp graph.cpp -std=c++17 -o dikstra
   # cppcheck
   - cppcheck --quiet --error-exitcode=1 .
-  - valgrind --leak-check=full -v --show-reachable=yes --log-file=memcheck.log ./travis_qmake_gcc_cpp14_memcheck
+  - valgrind --leak-check=full -v --show-reachable=yes --log-file=memcheck.log ./dikstra
   - cat memcheck.log
   #- ./travis_gcc_cpp17_cppcheck
     # Codecov
