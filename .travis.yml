@@ -18,7 +18,7 @@ install:
 
 script: 
   # Build and run this project
-  - g++ main.cpp graph.cpp -std=c++17 -o dikstra
+  - g++ main.cpp graph.cpp -std=c++17 -fprofile-arcs -ftest-coverage -o dikstra
   # cppcheck
   - cppcheck --quiet --error-exitcode=1 .
   #- valgrind --leak-check=full -v --show-reachable=yes --log-file=memcheck.log ./dikstra
