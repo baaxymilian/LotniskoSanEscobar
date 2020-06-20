@@ -23,7 +23,7 @@ script:
   - cppcheck --quiet --error-exitcode=1 .
   - valgrind --leak-check=full -v --show-reachable=yes --log-file=memcheck.log ./travis_qmake_gcc_cpp14_memcheck
   - cat memcheck.log
-  - ./travis_gcc_cpp17_cppcheck
+  #- ./travis_gcc_cpp17_cppcheck
     # Codecov
   - ./get_code_cov
   - codecov
