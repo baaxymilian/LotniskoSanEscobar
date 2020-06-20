@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <memory>
 
 #include "graph.h"
 
@@ -29,7 +30,7 @@ auto main() -> int
 			throw "The number of edges it too high. Numer of edges is limited to: 1024";
 		}
 
-		auto* my_graph = new graph_class(false, total_edges);
+		std::unique_ptr<graph_class> my_graph (new graph_class(false, total_edges));
 		auto temp_node_a = 0;
 		auto temp_node_b = 0;
 		auto temp_edge_weight = 0;

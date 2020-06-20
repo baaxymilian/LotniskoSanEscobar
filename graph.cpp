@@ -1,6 +1,5 @@
 #include <iostream>
 #include <limits>
-#include <array>
 
 #include "graph.h"
 
@@ -88,7 +87,7 @@ auto init_vars(std::vector<bool>& discovered, std::vector<int>& distance, std::v
 	}
 }
 
-auto dijkstra_algorithm(graph_class* g, std::vector<int> parent, std::vector<int> distance, int start) -> void
+auto dijkstra_algorithm(std::unique_ptr<graph_class>& g, std::vector<int> parent, std::vector<int> distance, int start) -> void
 {
 	std::vector<bool> discovered;
 
@@ -148,7 +147,7 @@ auto test_graph(void) -> void
 {
 	const auto node_number = 10;
 
-	auto* my_graph = new graph_class(false, node_number);
+	std::unique_ptr<graph_class> my_graph (new graph_class(false, node_number));
 
 	std::vector<int> parent;
 	std::vector<int> distance;
