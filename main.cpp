@@ -56,10 +56,10 @@ int main() {
       TestGraph();
 
       delete [] parent;
-      parent = nullptr;
+      parent = NULL;
 
       delete [] distance;
-      distance = nullptr;
+      distance = NULL;
 
     } catch (const char *msg) {
       std::cerr << msg << std::endl;
