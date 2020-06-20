@@ -14,15 +14,11 @@ install:
   # cppcheck
   - sudo apt-get install -qq cppcheck
   - sudo apt-get install -qq valgrind
-  - sudo apt-get install -qq oclint
   - sudo pip install codecov
 
 script: 
   # Build and run this project
   - g++ main.cpp graph.cpp -std=c++17 -fprofile-arcs -ftest-coverage -o dikstra
-  - oclint main.cpp
-  - oclint graph.cpp
-  - oclint graph.h
   - cppcheck --quiet --error-exitcode=1 .
   #- valgrind --leak-check=full -v --show-reachable=yes --log-file=memcheck.log ./dikstra
   #- cat memcheck.log
