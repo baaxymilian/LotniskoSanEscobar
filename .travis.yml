@@ -25,8 +25,8 @@ script:
   #- cat memcheck.log
   #- ./travis_gcc_cpp17_cppcheck
     # Codecov
-  - ./get_code_cov
-  - ls
+  - gcov -n -o . main.cpp > /dev/null
+  - gcov -n -o . graph.cpp > /dev/null
   - codecov
 
 after_success:
