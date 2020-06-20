@@ -15,11 +15,13 @@ install:
   - sudo apt-get install -qq cppcheck
   - sudo apt-get install -qq valgrind
   - sudo pip install codecov
+  - ./install_oclint.sh
 
 script: 
   # Build and run this project
   - g++ main.cpp graph.cpp -std=c++17 -fprofile-arcs -ftest-coverage -o dikstra
   - cppcheck --quiet --error-exitcode=1 .
+  - ./do_oclint.sh
   #- valgrind --leak-check=full -v --show-reachable=yes --log-file=memcheck.log ./dikstra
   #- cat memcheck.log
   - ./dikstra
