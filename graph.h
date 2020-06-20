@@ -53,11 +53,12 @@ public:
 };
 
 auto init_vars(std::vector<bool>& discovered, std::vector<int>& distance, std::vector<int>& parent,
-               const int graph_size) -> void;
-auto dijkstra_algorithm(std::unique_ptr<graph_class>& g, std::vector<int> parent, std::vector<int> distance, int start) -> void;
+               int graph_size) -> void;
+auto dijkstra_algorithm(std::unique_ptr<graph_class>& g, std::vector<int> parent, std::vector<int> distance,
+                        int start) -> void;
 
-auto print_shortest_path(const int v, std::vector<int> parent, const int graph_number) -> void;
-auto print_distances(const int start, std::vector<int> distance, const int graph_number) -> void;
+auto print_shortest_path(int v, std::vector<int> parent, int graph_number) -> void;
+auto print_distances(int start, std::vector<int> distance, int graph_number) -> void;
 auto test_graph(void) -> void;
 
 #endif // !GRAPH_H

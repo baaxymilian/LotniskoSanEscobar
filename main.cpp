@@ -30,7 +30,7 @@ auto main() -> int
 			throw "The number of edges it too high. Numer of edges is limited to: 1024";
 		}
 
-		std::unique_ptr<graph_class> my_graph (new graph_class(false, total_edges));
+		std::unique_ptr<graph_class> my_graph(new graph_class(false, total_edges));
 		auto temp_node_a = 0;
 		auto temp_node_b = 0;
 		auto temp_edge_weight = 0;
@@ -63,7 +63,7 @@ auto main() -> int
 		// indeks 2 - waga polaczenia
 		// 
 		my_graph->print();
-		
+
 		dijkstra_algorithm(my_graph, parent, distance, 1);
 
 		print_shortest_path(5, parent, total_edges);
@@ -71,7 +71,6 @@ auto main() -> int
 		print_distances(1, distance, total_edges);
 
 		test_graph();
-
 	}
 	catch (std::string& msg)
 	{

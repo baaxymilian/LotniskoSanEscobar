@@ -77,7 +77,8 @@ void graph_class::print() const
 	}
 }
 
-auto init_vars(std::vector<bool>& discovered, std::vector<int>& distance, std::vector<int>& parent, const int graph_size) -> void
+auto init_vars(std::vector<bool>& discovered, std::vector<int>& distance, std::vector<int>& parent,
+               const int graph_size) -> void
 {
 	for (auto i = 1; i < graph_size + 1; i++)
 	{
@@ -87,7 +88,8 @@ auto init_vars(std::vector<bool>& discovered, std::vector<int>& distance, std::v
 	}
 }
 
-auto dijkstra_algorithm(std::unique_ptr<graph_class>& g, std::vector<int> parent, std::vector<int> distance, int start) -> void
+auto dijkstra_algorithm(std::unique_ptr<graph_class>& g, std::vector<int> parent, std::vector<int> distance,
+                        int start) -> void
 {
 	std::vector<bool> discovered;
 
@@ -147,7 +149,7 @@ auto test_graph(void) -> void
 {
 	const auto node_number = 10;
 
-	std::unique_ptr<graph_class> my_graph (new graph_class(false, node_number));
+	std::unique_ptr<graph_class> my_graph(new graph_class(false, node_number));
 
 	std::vector<int> parent;
 	std::vector<int> distance;
