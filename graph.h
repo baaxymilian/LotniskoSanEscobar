@@ -52,7 +52,7 @@ class Graph {
     void print() const;
 };
 
-void InitVars(bool discovered[], int distance[], int parent[], int graphSize);
+void InitVars(bool *discovered[], int distance[], int parent[], int graphSize);
 void DijkstraAlgorithm(Graph *g, int parent[], int distance[], int start);
 
 void PrintShortestPath(int v, int parent[], int graphNumber);
