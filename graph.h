@@ -22,16 +22,14 @@
   @author Jakub Brzezowski
 */
 class EdgeNode {
-public:
-  int number;     /*!<Number of node*/
-  int weight;     /*!<Weight of edge*/
-  EdgeNode *next; /*!<Pointer to next node, which represents edge*/
+  public:
+    int number;     /*!<Number of node*/
+    int weight;     /*!<Weight of edge*/
+    EdgeNode *next; /*!<Pointer to next node, which represents edge*/
 
-  EdgeNode();
-  EdgeNode(EdgeNode&);
-  EdgeNode(int, int);
-
-		~EdgeNode();
+    EdgeNode();
+    EdgeNode(EdgeNode&);
+    EdgeNode(int, int);
 };
 
 /**
@@ -43,19 +41,18 @@ public:
 */
 class Graph {
   public:
-		bool directed;
-		int nodeNumber;
-		EdgeNode** edges;	/*!< Container with edges and nodes*/
+    bool directed;
+    int nodeNumber;
+    EdgeNode** edges;	/*!< Container with edges and nodes*/
 
-  Graph(bool,int);
-  Graph(Graph&);
-  ~Graph();
+    Graph(bool, int);
+    Graph(Graph&);
 
-  void InsertEdge(int, int, int, bool);
-  void print() const;
+    void InsertEdge(int, int, int, bool);
+    void print() const;
 };
 
-void InitVars(bool discovered[], int distance[], int parent[], int graphSize);
+void InitVars(bool *discovered[], int distance[], int parent[], int graphSize);
 void DijkstraAlgorithm(Graph *g, int parent[], int distance[], int start);
 
 void PrintShortestPath(int v, int parent[], int graphNumber);

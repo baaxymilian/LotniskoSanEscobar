@@ -3,21 +3,20 @@
 EdgeNode::EdgeNode() {
 	this->number = 0;
 	this->weight = 0;
-	this->next = NULL;
+	this->next = nullptr;
 }
 
 EdgeNode::EdgeNode(int number, int weight) {
 	this->number = number;
 	this->weight = weight;
-	this->next = NULL;
+	this->next = nullptr;
 }
 
 EdgeNode::EdgeNode(EdgeNode& parent) {
 	this->number = parent.number;
 	this->weight = parent.weight;
+	this->next = nullptr;
 }
-
-EdgeNode::~EdgeNode() {}
 
 Graph::Graph(bool directed, int nodeNumber) {
 
@@ -29,23 +28,17 @@ Graph::Graph(bool directed, int nodeNumber) {
 }
 
 Graph::Graph(Graph& parent) {
-
-	int x;
-	int y;
-	int weight;
-
 	this->directed = parent.directed;
 	this->nodeNumber = parent.nodeNumber;
-
-
+	this->edges = new EdgeNode * [nodeNumber + 1];
+	for (int i = 0; i < this->nodeNumber + 1; i++)
+		this->edges[i] = new EdgeNode;
 }
-
-Graph::~Graph() {}
 
 void Graph::InsertEdge(int x, int y, int weight, bool directed) {
 	if (x > 0 && x < (this->nodeNumber + 1) && y>0 && y < (this->nodeNumber + 1)) {
 
-		EdgeNode* edge = new EdgeNode(y, weight);
+		EdgeNode *edge = new EdgeNode(y, weight);
 		edge->next = this->edges[x];
 		this->edges[x] = edge;
 		if (!directed)
@@ -53,11 +46,11 @@ void Graph::InsertEdge(int x, int y, int weight, bool directed) {
 	}
 }
 
-void Graph::print() const{
+void Graph::print() const {
 	for (int v = 1; v < this->nodeNumber + 1; v++) {
 		if (this->edges[v] != nullptr) {
 			std::cout << "Vertex" << v << " has neighbours: " << std::endl;
-			EdgeNode* current = this->edges[v];
+			EdgeNode *current = this->edges[v];
 			while (current != nullptr) {
 				std::cout << current->number << " (" << current->weight << ")" << std::endl;
 				current = current->next;
@@ -75,9 +68,8 @@ void InitVars(bool discovered[], int distance[], int parent[], int graphSize) {
 }
 
 void DijkstraAlgorithm(Graph* g, int parent[], int distance[], int start) {
-
-	bool discovered[g->nodeNumber + 1];
-	EdgeNode* tmp;
+	bool *discovered = new bool [g->nodeNumber + 1];
+	EdgeNode *tmp = nullptr;
 
 	int vTMP = 0;
 	int vNeighbour;
@@ -107,11 +99,9 @@ void DijkstraAlgorithm(Graph* g, int parent[], int distance[], int start) {
 			}
 		}
 	}
-	/* DO PÓŹNIEJSZEGO UŻYCIA
-	for (int i = 0; i < g->nodeNumber + 1; i++)
-      delete[] discovered[i];
-  		delete[] discovered;
-		  */
+
+	delete [] discovered;
+	discovered = nullptr;
 }
 
 void PrintShortestPath(int v, int parent[], int graphNumber) {
@@ -130,10 +120,9 @@ void PrintDistances(int start, int distance[], int graphNumber) {
 }
 
 void TestGraph(void) {
-
 	const int nodeNumber = 10;
 
-	Graph* myGraph = new Graph(false, nodeNumber);
+	Graph *myGraph = new Graph(false, nodeNumber);
 
 	int parent[nodeNumber + 1];
 	int distance[nodeNumber + 1];
@@ -154,7 +143,5 @@ void TestGraph(void) {
 	PrintShortestPath(5, parent, nodeNumber);
 
 	//Wypisz dystanse od wierzchołka startowego do wszystkich innych.
-	//Wypisz dystanse od wierzchołka startowego do wszystkich innych.
 	PrintDistances(start, distance, nodeNumber);
-
 }
