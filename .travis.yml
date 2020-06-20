@@ -21,8 +21,8 @@ script:
   - g++ main.cpp graph.cpp -std=c++17 -o dikstra
   # cppcheck
   - cppcheck --quiet --error-exitcode=1 .
-  - valgrind --leak-check=full -v --show-reachable=yes --log-file=memcheck.log ./dikstra
-  - cat memcheck.log
+  #- valgrind --leak-check=full -v --show-reachable=yes --log-file=memcheck.log ./dikstra
+  #- cat memcheck.log
   #- ./travis_gcc_cpp17_cppcheck
     # Codecov
   - ./get_code_cov
