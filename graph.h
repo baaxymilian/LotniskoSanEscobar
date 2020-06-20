@@ -7,6 +7,7 @@
 */
 
 #pragma once
+#include <vector>
 #ifndef GRAPH_H
 #define GRAPH_H
 
@@ -45,17 +46,17 @@ public:
 	edge_node** edges; /*!< Container with edges and nodes*/
 
 	graph_class(bool, int);
-	graph_class(graph_class&);
+	graph_class(const graph_class&);
 
 	auto insert_edge(int, int, int, bool) const -> void;
 	auto print() const -> void;
 };
 
-auto init_vars(bool discovered[], int distance[], int parent[], int graph_size) -> void;
-auto dijkstra_algorithm(graph_class* g, int parent[], int distance[], int start) -> void;
+auto init_vars(std::vector<bool>& discovered, std::vector<int>& distance, std::vector<int>& parent, const int graph_size) -> void;
+auto dijkstra_algorithm(graph_class* g, std::vector<int> parent, std::vector<int> distance, int start) -> void;
 
-auto print_shortest_path(int v, int parent[], int graph_number) -> void;
-auto print_distances(int start, int distance[], int graph_number) -> void;
+auto print_shortest_path(const int v, std::vector<int> parent, const int graph_number) -> void;
+auto print_distances(const int start, std::vector<int> distance, const int graph_number) -> void;
 auto test_graph(void) -> void;
 
 #endif // !GRAPH_H

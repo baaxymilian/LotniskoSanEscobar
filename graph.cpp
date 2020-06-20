@@ -1,5 +1,6 @@
 #include <iostream>
 #include <limits>
+#include <array>
 
 #include "graph.h"
 
@@ -30,10 +31,12 @@ graph_class::graph_class(const bool directed, const int node_number)
 	this->node_number = node_number;
 	this->edges = new edge_node*[node_number + 1];
 	for (auto i = 0; i < this->node_number + 1; i++)
+	{
 		this->edges[i] = new edge_node;
+	}
 }
 
-graph_class::graph_class(graph_class& parent)
+graph_class::graph_class(const graph_class& parent)
 {
 	this->directed = parent.directed;
 	this->node_number = parent.node_number;
@@ -75,19 +78,19 @@ void graph_class::print() const
 	}
 }
 
-auto init_vars(bool discovered[], int distance[], int parent[], const int graph_size) -> void
+auto init_vars(std::vector<bool>& discovered, std::vector<int>& distance, std::vector<int>& parent, const int graph_size) -> void
 {
 	for (auto i = 1; i < graph_size + 1; i++)
 	{
-		discovered[i] = false;
-		distance[i] = std::numeric_limits<int>::max();
-		parent[i] = -1;
+		discovered.push_back(false);
+		distance.push_back(std::numeric_limits<int>::max());
+		parent.push_back(-1);
 	}
 }
 
-auto dijkstra_algorithm(graph_class* g, int parent[], int distance[], int start) -> void
+auto dijkstra_algorithm(graph_class* g, std::vector<int> parent, std::vector<int> distance, int start) -> void
 {
-	auto* discovered = new bool [g->node_number + 1];
+	std::vector<bool> discovered;
 
 	auto v_tmp = 0;
 
@@ -119,12 +122,9 @@ auto dijkstra_algorithm(graph_class* g, int parent[], int distance[], int start)
 			}
 		}
 	}
-
-	delete [] discovered;
-	discovered = nullptr;
 }
 
-auto print_shortest_path(const int v, int parent[], const int graph_number) -> void
+auto print_shortest_path(const int v, std::vector<int> parent, const int graph_number) -> void
 {
 	if (v > 0 && v < graph_number + 1 && parent[v] != -1)
 	{
@@ -133,7 +133,7 @@ auto print_shortest_path(const int v, int parent[], const int graph_number) -> v
 	}
 }
 
-auto print_distances(const int start, int distance[], const int graph_number) -> void
+auto print_distances(const int start, std::vector<int> distance, const int graph_number) -> void
 {
 	for (auto i = 1; i < graph_number + 1; i++)
 	{
@@ -150,8 +150,8 @@ auto test_graph(void) -> void
 
 	auto* my_graph = new graph_class(false, node_number);
 
-	int parent[node_number + 1];
-	int distance[node_number + 1];
+	std::vector<int> parent;
+	std::vector<int> distance;
 
 	const auto start = 1;
 

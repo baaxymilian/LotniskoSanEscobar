@@ -34,8 +34,8 @@ auto main() -> int
 		auto temp_node_b = 0;
 		auto temp_edge_weight = 0;
 
-		auto* parent = new int [total_edges + 1]; // initialized by InitVars()
-		auto* distance = new int [total_edges + 1]; // initialized by InitVars()
+		std::vector<int> parent;
+		std::vector<int> distance;
 
 		for (auto i = 0; i < total_edges; i++)
 		{
@@ -62,7 +62,7 @@ auto main() -> int
 		// indeks 2 - waga polaczenia
 		// 
 		my_graph->print();
-
+		
 		dijkstra_algorithm(my_graph, parent, distance, 1);
 
 		print_shortest_path(5, parent, total_edges);
@@ -71,11 +71,6 @@ auto main() -> int
 
 		test_graph();
 
-		delete [] parent;
-		parent = nullptr;
-
-		delete [] distance;
-		distance = nullptr;
 	}
 	catch (std::string& msg)
 	{
