@@ -53,8 +53,6 @@ public:
 	auto print() const -> void;
 };
 
-auto init_vars(std::vector<bool>& discovered, std::vector<int>& distance, std::vector<int>& parent,
-               int graph_size) -> void;
 auto dijkstra_algorithm(std::unique_ptr<graph_class>& g, std::vector<int> parent, std::vector<int> distance,
                         int start) -> std::vector<int>;
 
