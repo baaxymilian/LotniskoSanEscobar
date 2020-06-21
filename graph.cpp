@@ -29,7 +29,7 @@ graph_class::graph_class(const bool directed, const int node_number)
 	this->directed = directed;
 	this->node_number = node_number;
 	this->edges = new edge_node*[node_number + 1];
-	for (auto i = 0; i < this->node_number + 1; i++)
+	for (auto i = 1; i < this->node_number + 1; i++)
 	{
 		this->edges[i] = new edge_node;
 	}
@@ -40,7 +40,7 @@ graph_class::graph_class(const graph_class& parent)
 	this->directed = parent.directed;
 	this->node_number = parent.node_number;
 	this->edges = new edge_node*[node_number + 1];
-	for (auto i = 0; i < this->node_number + 1; i++)
+	for (auto i = 1; i < this->node_number + 1; i++)
 	{
 		this->edges[i] = new edge_node;
 	}
@@ -66,7 +66,7 @@ void graph_class::print() const
 	{
 		if (this->edges[v] != nullptr)
 		{
-			std::cout << "Vertex" << v << " has neighbors: " << std::endl;
+			std::cout << "Node " << v << " has neighbours: " << std::endl;
 			auto* current = this->edges[v];
 			while (current != nullptr)
 			{

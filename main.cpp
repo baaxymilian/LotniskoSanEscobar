@@ -41,7 +41,7 @@ auto main() -> int
 		for (auto i = 0; i < total_edges; i++)
 		{
 			input_file >> temp_node_a >> temp_node_b >> temp_edge_weight;
-
+			my_graph->insert_edge(temp_node_a, temp_node_b, temp_edge_weight, false);
 			if ((temp_node_a > total_nodes) || (temp_node_b > total_nodes))
 			{
 				throw "Incorrect number of a node";
@@ -55,8 +55,7 @@ auto main() -> int
 				throw "Weight must be positive";
 			}
 		}
-		my_graph->insert_edge(temp_node_a, temp_node_b, temp_edge_weight, false);
-
+		
 		// sprawdzenie poprawnosci wczytanych wartosci
 		// indeks 0 - pierwszy wierzcholek
 		// indeks 1 - drugi wierzcholek
@@ -64,13 +63,13 @@ auto main() -> int
 		// 
 		my_graph->print();
 
-		dijkstra_algorithm(my_graph, parent, distance, 1);
+		//dijkstra_algorithm(my_graph, parent, distance, 1);
 
-		print_shortest_path(5, parent, total_edges);
+		//print_shortest_path(5, parent, total_edges);
 
-		print_distances(1, distance, total_edges);
+		//print_distances(1, distance, total_edges);
 
-		test_graph();
+		//test_graph();
 	}
 	catch (std::string& msg)
 	{
