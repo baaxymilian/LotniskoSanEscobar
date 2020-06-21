@@ -46,6 +46,7 @@ public:
 	int node_number;
 	edge_node** edges; /*!< Container with edges and nodes*/
 
+  graph_class();
 	graph_class(bool, int);
 	graph_class(const graph_class&);
 

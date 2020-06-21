@@ -24,6 +24,13 @@ edge_node::edge_node(const edge_node& parent)
 	this->next = nullptr;
 }
 
+graph_class::graph_class()
+{
+	this->directed = false;
+	this->node_number = 0;
+	this->edges = new edge_node*;
+}
+
 graph_class::graph_class(const bool directed, const int node_number)
 {
 	this->directed = directed;
@@ -73,75 +80,6 @@ void graph_class::print() const
 				std::cout << current->number << " (" << current->weight << ")" << std::endl;
 				current = current->next;
 			}
-		}
-	}
-}
-
-auto dijkstra_algorithm(std::unique_ptr<graph_class>& g, std::vector<int> parent, std::vector<int> distance,
-                        int start) -> std::vector<int>
-{
-	std::vector<bool> discovered;
-
-	auto v_tmp = 1;
-
-	for (auto i = 0; i < g->node_number + 1; i++)
-	{
-		discovered.push_back(false);
-		distance.push_back(std::numeric_limits<int>::max());
-		parent.push_back(-1);
-	}
-
-
-
-	while (discovered[v_tmp] == false)
-	{
-		discovered[v_tmp] = true;
-		auto* tmp = g->edges[v_tmp];
-
-		while (tmp != nullptr)
-		{
-			const auto v_neighbor = tmp->number;
-			const auto weight = tmp->weight;
-			if (distance[v_tmp] + weight < distance[v_neighbor])
-			{
-				distance[v_neighbor] = distance[v_tmp] + weight;
-				parent[v_neighbor] = v_tmp;
-			}
-			tmp = tmp->next;
-		}
-
-		auto smallest_distance = std::numeric_limits<int>::max();
-		for (auto i = 1; i < g->node_number; i++)
-		{
-			if (!discovered[i] && (distance[i] < smallest_distance))
-			{
-				v_tmp = i;
-				smallest_distance = distance[i];
-			}
-		}
-		
-	}
-	return parent;
-}
-
-auto print_shortest_path(const int v, std::vector<int> parent, const int stop) -> void
-{
-	std::cout << v; 
-	auto tmp = v;
-	while(tmp != stop)
-	{
-		std::cout << "->" << parent[tmp];
-		tmp = parent[tmp];
-	}
-}
-
-auto print_distances(const int start, std::vector<int> distance, const int graph_number) -> void
-{
-	for (auto i = 1; i < graph_number + 1; i++)
-	{
-		if (distance[i] != std::numeric_limits<int>::max())
-		{
-			std::cout << "Shortest distance from " << start << "to" << i << "is: " << distance[i] << std::endl;
 		}
 	}
 }
