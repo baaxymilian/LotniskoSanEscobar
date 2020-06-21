@@ -149,31 +149,3 @@ auto print_distances(const int start, std::vector<int> distance, const int graph
 		}
 	}
 }
-
-auto test_graph(void) -> void
-{
-	const auto node_number = 5;
-
-	std::unique_ptr<graph_class> my_graph(new graph_class(false, node_number));
-
-	std::vector<int> parent;
-	std::vector<int> distance;
-
-	const auto start = 1;
-
-	my_graph->insert_edge(1, 2, 6, false);
-	my_graph->insert_edge(1, 3, 2, false);
-	my_graph->insert_edge(3, 2, 5, false);
-	my_graph->insert_edge(3, 4, 1, false);
-	my_graph->insert_edge(2, 4, 3, false);
-	my_graph->insert_edge(4, 5, 2, false);
-
-	//Wykonaj algorytm Dijkstry
-	parent = dijkstra_algorithm(my_graph, parent, distance, start);
-
-	//Wypisz najkrótszą ścieżkę z wierzchołka 1 do 5
-	print_shortest_path(5, parent, node_number);
-
-	//Wypisz dystanse od wierzchołka startowego do wszystkich innych.
-	print_distances(start, distance, node_number);
-}
