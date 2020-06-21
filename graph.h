@@ -54,10 +54,4 @@ public:
 	auto print() const -> void;
 };
 
-auto dijkstra_algorithm(std::unique_ptr<graph_class>& g, std::vector<int> parent, std::vector<int> distance,
-                        int start) -> std::vector<int>;
-
-auto print_shortest_path(int v, std::vector<int> parent, const int stop) -> void;
-auto print_distances(int start, std::vector<int> distance, int graph_number) -> void;
-
 #endif // !GRAPH_H
