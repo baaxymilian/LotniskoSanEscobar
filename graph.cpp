@@ -68,7 +68,7 @@ void graph_class::print() const
 		{
 			std::cout << "Node " << v << " has neighbours: " << std::endl;
 			auto* current = this->edges[v];
-			while (current != nullptr)
+			while (current->number != 0)
 			{
 				std::cout << current->number << " (" << current->weight << ")" << std::endl;
 				current = current->next;
