@@ -21,7 +21,7 @@ edge_node::edge_node(const edge_node& parent)
 {
 	this->number = parent.number;
 	this->weight = parent.weight;
-	this->next = parent.next;
+	this->next = nullptr;
 }
 
 graph_class::graph_class()
@@ -47,14 +47,33 @@ graph_class::graph_class(const graph_class& parent)
 	this->directed = parent.directed;
 	this->node_number = parent.node_number;
 	this->edges = new edge_node*[parent.node_number + 1];
-	for (auto i = 1; i < parent.node_number + 1; i++)
+	for (auto i = 1; i < this->node_number + 1; i++)
 	{
-		this->edges[i] = parent.edges[i];
+		this->edges[i] = new edge_node;
+		
 	}
+
+	for (auto v_tmp = 1; v_tmp < node_number + 1; v_tmp++)
+	{
+		auto* tmp = parent.edges[v_tmp];
+		while(tmp->next != nullptr)
+		{
+			this->insert_edge(tmp->number, v_tmp, tmp->weight, true);
+			tmp = tmp->next;
+		}
+	}	
 }
 
 auto graph_class::insert_edge(const int x, const int y, const int weight, const bool is_directed) const -> void
 {
+	if (x == y)
+	{
+		throw "You cannot create inbound and outbound highway from the same city";
+	}
+	if (weight <= 0)
+	{
+		throw "Weight must be positive";
+	}
 	if (x > 0 && x < (this->node_number + 1) && y > 0 && y < (this->node_number + 1))
 	{
 		auto* edge = new edge_node(y, weight);
@@ -65,6 +84,7 @@ auto graph_class::insert_edge(const int x, const int y, const int weight, const 
 			insert_edge(y, x, weight, true);
 		}
 	}
+
 }
 
 void graph_class::print() const
@@ -82,4 +102,5 @@ void graph_class::print() const
 			}
 		}
 	}
+	std::cout << std::endl;
 }
