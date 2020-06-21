@@ -3,6 +3,7 @@
 #include <string>
 #include <memory>
 
+#include "network.h"
 #include "graph.h"
 
 constexpr int edges_max = 1024;
@@ -61,12 +62,13 @@ auto main() -> int
 		// indeks 1 - drugi wierzcholek
 		// indeks 2 - waga polaczenia
 		// 
+
 		my_graph->print();
 
-		parent = dijkstra_algorithm(my_graph, parent, distance, 1);
+		//parent = dijkstra_algorithm(my_graph, parent, distance, 1);
 
-		print_shortest_path(5, parent, 1);
-
+		//print_shortest_path(5, parent, 1);
+		
 		//print_distances(1, distance, total_edges);
 
 		//test_graph();
