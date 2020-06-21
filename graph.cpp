@@ -52,7 +52,6 @@ graph_class::graph_class(const graph_class& parent)
 		this->edges[i] = new edge_node;
 		
 	}
-
 	for (auto v_tmp = 1; v_tmp < node_number + 1; v_tmp++)
 	{
 		auto* tmp = parent.edges[v_tmp];
