@@ -18,11 +18,12 @@ network_class::network_class(const graph_class& graph, const int capital_id)
 	this->graph = new graph_class(graph);
 	this->capital_id = capital_id;
 
-    /*
-    Begin Dijkstra algorithm
-    */
-
-   	std::vector<bool> discovered;
+	/*
+	Begin Dijkstra algorithm
+	*/
+	std::vector<bool> discovered;
+	std::vector<int> distance;
+	std::vector<int> parent;
 
 	auto v_tmp = 1;
 
@@ -62,12 +63,12 @@ network_class::network_class(const graph_class& graph, const int capital_id)
 		
 	}
 
-    /*
-    End Dijkstra Algorithm
-    */
+	/*
+	End Dijkstra Algorithm
+	*/
 
-    this->distance = distance;
-    this->parent = parent;
+	this->distance = distance;
+	this->parent = parent;
 }
 
 auto network_class::print_shortest_path(const int start) const -> void

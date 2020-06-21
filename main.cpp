@@ -65,7 +65,16 @@ auto main() -> int
 
 		std::unique_ptr<network_class> my_network(new network_class(*my_graph, 1));
 		
+		//std::unique_ptr<graph_class> new_graph(new graph_class(*my_graph));
+
 		my_graph->print();
+
+
+		my_network->print_shortest_path(5);
+		my_network->print_shortest_path(2);
+
+		my_network->print_distances(1);
+
 
 		//parent = dijkstra_algorithm(my_graph, parent, distance, 1);
 

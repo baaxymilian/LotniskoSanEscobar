@@ -21,7 +21,7 @@ edge_node::edge_node(const edge_node& parent)
 {
 	this->number = parent.number;
 	this->weight = parent.weight;
-	this->next = nullptr;
+	this->next = parent.next;
 }
 
 graph_class::graph_class()
@@ -46,10 +46,10 @@ graph_class::graph_class(const graph_class& parent)
 {
 	this->directed = parent.directed;
 	this->node_number = parent.node_number;
-	this->edges = new edge_node*[node_number + 1];
-	for (auto i = 1; i < this->node_number + 1; i++)
+	this->edges = new edge_node*[parent.node_number + 1];
+	for (auto i = 1; i < parent.node_number + 1; i++)
 	{
-		this->edges[i] = new edge_node;
+		this->edges[i] = parent.edges[i];
 	}
 }
 
