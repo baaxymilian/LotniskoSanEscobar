@@ -80,7 +80,7 @@ void graph_class::print() const
 auto init_vars(std::vector<bool>& discovered, std::vector<int>& distance, std::vector<int>& parent,
                const int graph_size) -> void
 {
-	for (auto i = 1; i < graph_size + 1; i++)
+	for (auto i = 0; i < graph_size + 1; i++)
 	{
 		discovered.push_back(false);
 		distance.push_back(std::numeric_limits<int>::max());
@@ -89,16 +89,17 @@ auto init_vars(std::vector<bool>& discovered, std::vector<int>& distance, std::v
 }
 
 auto dijkstra_algorithm(std::unique_ptr<graph_class>& g, std::vector<int> parent, std::vector<int> distance,
-                        int start) -> void
+                        int start) -> std::vector<int>
 {
 	std::vector<bool> discovered;
 
-	auto v_tmp = 0;
+	auto v_tmp = 1;
 
 	init_vars(discovered, distance, parent, g->node_number);
 
 	while (discovered[v_tmp] == false)
 	{
+		discovered[v_tmp] = true;
 		auto* tmp = g->edges[v_tmp];
 
 		while (tmp != nullptr)
@@ -122,14 +123,16 @@ auto dijkstra_algorithm(std::unique_ptr<graph_class>& g, std::vector<int> parent
 				smallest_distance = distance[i];
 			}
 		}
+		
 	}
+	return parent;
 }
 
 auto print_shortest_path(const int v, std::vector<int> parent, const int graph_number) -> void
 {
 	if (v > 0 && v < graph_number + 1 && parent[v] != -1)
 	{
-		std::cout << parent[v] << " ";
+		std::cout << parent[v] << "->";
 		print_shortest_path(parent[v], parent, graph_number);
 	}
 }
@@ -164,7 +167,7 @@ auto test_graph(void) -> void
 	my_graph->insert_edge(4, 5, 2, false);
 
 	//Wykonaj algorytm Dijkstry
-	dijkstra_algorithm(my_graph, parent, distance, start);
+	parent = dijkstra_algorithm(my_graph, parent, distance, start);
 
 	//Wypisz najkrótszą ścieżkę z wierzchołka 1 do 5
 	print_shortest_path(5, parent, node_number);

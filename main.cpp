@@ -69,7 +69,7 @@ auto main() -> int
 
 		//print_distances(1, distance, total_edges);
 
-		//test_graph();
+		test_graph();
 	}
 	catch (std::string& msg)
 	{
