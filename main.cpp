@@ -63,6 +63,8 @@ auto main() -> int
 		// indeks 2 - waga polaczenia
 		// 
 
+		std::unique_ptr<network_class> my_network(new network_class(*my_graph, 1));
+		
 		my_graph->print();
 
 		//parent = dijkstra_algorithm(my_graph, parent, distance, 1);
