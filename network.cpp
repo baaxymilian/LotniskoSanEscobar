@@ -73,13 +73,14 @@ network_class::network_class(const graph_class& graph, const int capital_id)
 
 auto network_class::print_shortest_path(const int start) const -> void
 {
-	std::cout << this->capital_id; 
-	auto tmp = this->capital_id;
-	while(tmp != start)
+	std::cout << start; 
+	auto tmp = start;
+	while(tmp != capital_id)
 	{
 		std::cout << "->" << this->parent[tmp];
 		tmp = this->parent[tmp];
 	}
+	std::cout << std::endl; 
 }
 
 auto network_class::print_distances(const int start) const -> void
@@ -88,7 +89,7 @@ auto network_class::print_distances(const int start) const -> void
 	{
 		if (distance[i] != std::numeric_limits<int>::max())
 		{
-			std::cout << "Shortest distance from " << start << "to" << i << "is: " << distance[i] << std::endl;
+			std::cout << "Shortest distance from " << start << "to " << i << " is: " << distance[i] << std::endl;
 		}
 	}
 
