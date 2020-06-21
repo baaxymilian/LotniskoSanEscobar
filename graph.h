@@ -8,6 +8,7 @@
 
 #pragma once
 #include <vector>
+#include <memory>
 #ifndef GRAPH_H
 #define GRAPH_H
 
