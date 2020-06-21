@@ -1,4 +1,6 @@
 # LotniskoSanEscobar
+[![Build Status](https://travis-ci.org/baaxymilian/LotniskoSanEscobar.svg?branch=master)](https://travis-ci.org/baaxymilian/LotniskoSanEscobar)
+
 Wykorzystanie algorytmu Dijkstry w problemie matematycznym.
 
 Temat: Lotnisko w San Escobar pęka w szwach! To oczywiście efekt ogromnego ruchu lotniczego
