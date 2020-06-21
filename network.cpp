@@ -13,9 +13,9 @@ network_class::network_class()
 
 }
 
-network_class::network_class(std::unique_ptr<graph_class> graph, const int capital_id)
+network_class::network_class(const graph_class& graph, const int capital_id)
 {
-	this->graph = new graph_class(*graph);
+	this->graph = new graph_class(graph);
 	this->capital_id = capital_id;
 
     /*
@@ -26,7 +26,7 @@ network_class::network_class(std::unique_ptr<graph_class> graph, const int capit
 
 	auto v_tmp = 1;
 
-	for (auto i = 0; i < graph->node_number + 1; i++)
+	for (auto i = 0; i < this->graph->node_number + 1; i++)
 	{
 		discovered.push_back(false);
 		distance.push_back(std::numeric_limits<int>::max());
@@ -36,7 +36,7 @@ network_class::network_class(std::unique_ptr<graph_class> graph, const int capit
 	while (discovered[v_tmp] == false)
 	{
 		discovered[v_tmp] = true;
-		auto* tmp = graph->edges[v_tmp];
+		auto* tmp = this->graph->edges[v_tmp];
 
 		while (tmp != nullptr)
 		{
@@ -51,7 +51,7 @@ network_class::network_class(std::unique_ptr<graph_class> graph, const int capit
 		}
 
 		auto smallest_distance = std::numeric_limits<int>::max();
-		for (auto i = 1; i < graph->node_number; i++)
+		for (auto i = 1; i < this->graph->node_number; i++)
 		{
 			if (!discovered[i] && (distance[i] < smallest_distance))
 			{

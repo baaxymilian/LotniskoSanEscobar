@@ -20,7 +20,7 @@ public:
     std::vector<int> parent;
 
     network_class();
-	network_class(std::unique_ptr<graph_class>, const int);
+	network_class(const graph_class&, const int);
 
     auto print_shortest_path(int) const -> void;
     auto print_distances(int) const -> void;
