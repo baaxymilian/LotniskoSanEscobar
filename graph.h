@@ -7,56 +7,58 @@
 */
 
 #pragma once
+#include <vector>
 #ifndef GRAPH_H
 #define GRAPH_H
 
-#include <iostream>
-#include <limits>
-
 /**
-  @class EdgeNote
+  @class edge_node
   @brief Implementation of basics elements of graphs in combination simplified
   usage in graph class.
   @version 1.0
   @date 2020-06-05
   @author Jakub Brzezowski
 */
-class EdgeNode {
-  public:
-    int number;     /*!<Number of node*/
-    int weight;     /*!<Weight of edge*/
-    EdgeNode *next; /*!<Pointer to next node, which represents edge*/
+class edge_node
+{
+public:
+	int number; /*!<Number of node*/
+	int weight; /*!<Weight of edge*/
+	edge_node* next; /*!<Pointer to next node, which represents edge*/
 
-    EdgeNode();
-    EdgeNode(EdgeNode&);
-    EdgeNode(int, int);
+	edge_node();
+	edge_node(const edge_node&);
+	edge_node(int, int);
 };
 
 /**
-  @class Graph
+  @class graph_class
   @brief Implementation of mathematical graph
   @version 1.0
   @date 2020-06-05
   @author Jakub Brzezowski
 */
-class Graph {
-  public:
-    bool directed;
-    int nodeNumber;
-    EdgeNode** edges;	/*!< Container with edges and nodes*/
+class graph_class
+{
+public:
+	bool directed;
+	int node_number;
+	edge_node** edges; /*!< Container with edges and nodes*/
 
-    Graph(bool, int);
-    Graph(Graph&);
+	graph_class(bool, int);
+	graph_class(const graph_class&);
 
-    void InsertEdge(int, int, int, bool);
-    void print() const;
+	auto insert_edge(int, int, int, bool) const -> void;
+	auto print() const -> void;
 };
 
-void InitVars(bool *discovered[], int distance[], int parent[], int graphSize);
-void DijkstraAlgorithm(Graph *g, int parent[], int distance[], int start);
+auto init_vars(std::vector<bool>& discovered, std::vector<int>& distance, std::vector<int>& parent,
+               int graph_size) -> void;
+auto dijkstra_algorithm(std::unique_ptr<graph_class>& g, std::vector<int> parent, std::vector<int> distance,
+                        int start) -> void;
 
-void PrintShortestPath(int v, int parent[], int graphNumber);
-void PrintDistances(int start, int distance[], int graphNumber);
-void TestGraph(void);
+auto print_shortest_path(int v, std::vector<int> parent, int graph_number) -> void;
+auto print_distances(int start, std::vector<int> distance, int graph_number) -> void;
+auto test_graph(void) -> void;
 
 #endif // !GRAPH_H

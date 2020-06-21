@@ -1,70 +1,82 @@
-#include "graph.h"
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <memory>
 
-constexpr auto EDGES_MAX = 1024;
+#include "graph.h"
 
-int main() {
-  std::ifstream input_file("input.txt");
+constexpr int edges_max = 1024;
 
-  try {
-    if (!input_file.good()) {
-      throw "File was not opened succesfully";
-    }
+auto main() -> int
+{
+	std::ifstream input_file("input.txt");
 
-    std::cout << "File was successfully opened" << std::endl;
+	try
+	{
+		if (!input_file.good())
+		{
+			throw "File was not opened successfully";
+		}
 
-    int starting_node, total_nodes, total_edges;
-    input_file >> starting_node >> total_nodes >> total_edges;
+		std::cout << "File was successfully opened" << std::endl;
 
-    if (EDGES_MAX < total_edges) {
-      throw "The number of edges it too high. Numer of edges is limited to: 1024";
-    }
+		auto starting_node = 0;
+		auto total_nodes = 0;
+		auto total_edges = 0;
+		input_file >> starting_node >> total_nodes >> total_edges;
 
-    Graph *graph = new Graph(false, total_edges);
-    int temp_node_a, temp_node_b, temp_edge_weight;
+		if (edges_max < total_edges)
+		{
+			throw "The number of edges it too high. Numer of edges is limited to: 1024";
+		}
 
-    int *parent = new int [total_edges + 1]; // initialized by InitVars()
-    int *distance = new int [total_edges + 1]; // initialized by InitVars()
+		std::unique_ptr<graph_class> my_graph(new graph_class(false, total_edges));
+		auto temp_node_a = 0;
+		auto temp_node_b = 0;
+		auto temp_edge_weight = 0;
 
-    for (int i = 0; i < total_edges; i++) {
-      input_file >> temp_node_a >> temp_node_b >> temp_edge_weight;
-      
-      if ((temp_node_a > total_nodes) || (temp_node_b > total_nodes)) {
-        throw "Incorrect number of a node";
-      } else if (temp_node_a == temp_node_b) {
-        throw "You cannot create inbound and outbound highway from the same city";
-      } else if (temp_edge_weight <= 0) {
-        throw "Weight must be positive";
-      }
-    } 
-      graph->InsertEdge(temp_node_a, temp_node_b, temp_edge_weight, 0);
-    
-      // sprawdzenie poprawnosci wczytanych wartosci
-      // indeks 0 - pierwszy wierzcholek
-      // indeks 1 - drugi wierzcholek
-      // indeks 2 - waga polaczenia
-      graph->print();
+		std::vector<int> parent;
+		std::vector<int> distance;
 
-      DijkstraAlgorithm(graph, parent, distance, 1);
+		for (auto i = 0; i < total_edges; i++)
+		{
+			input_file >> temp_node_a >> temp_node_b >> temp_edge_weight;
 
-      PrintShortestPath(5, parent, total_edges);
+			if ((temp_node_a > total_nodes) || (temp_node_b > total_nodes))
+			{
+				throw "Incorrect number of a node";
+			}
+			if (temp_node_a == temp_node_b)
+			{
+				throw "You cannot create inbound and outbound highway from the same city";
+			}
+			if (temp_edge_weight <= 0)
+			{
+				throw "Weight must be positive";
+			}
+		}
+		my_graph->insert_edge(temp_node_a, temp_node_b, temp_edge_weight, false);
 
-      PrintDistances(1, distance, total_edges);
+		// sprawdzenie poprawnosci wczytanych wartosci
+		// indeks 0 - pierwszy wierzcholek
+		// indeks 1 - drugi wierzcholek
+		// indeks 2 - waga polaczenia
+		// 
+		my_graph->print();
 
-      TestGraph();
+		dijkstra_algorithm(my_graph, parent, distance, 1);
 
-      delete [] parent;
-      parent = NULL;
+		print_shortest_path(5, parent, total_edges);
 
-      delete [] distance;
-      distance = NULL;
+		print_distances(1, distance, total_edges);
 
-    } catch (const char *msg) {
-      std::cerr << msg << std::endl;
-      return 1;
-    }
+		test_graph();
+	}
+	catch (std::string& msg)
+	{
+		std::cerr << msg << std::endl;
+		return 1;
+	}
 
-  return 0;
+	return 0;
 }
