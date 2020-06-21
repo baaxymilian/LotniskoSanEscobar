@@ -63,13 +63,13 @@ auto main() -> int
 		// 
 		my_graph->print();
 
-		//dijkstra_algorithm(my_graph, parent, distance, 1);
+		parent = dijkstra_algorithm(my_graph, parent, distance, 1);
 
-		//print_shortest_path(5, parent, total_edges);
+		print_shortest_path(5, parent, 1);
 
 		//print_distances(1, distance, total_edges);
 
-		test_graph();
+		//test_graph();
 	}
 	catch (std::string& msg)
 	{

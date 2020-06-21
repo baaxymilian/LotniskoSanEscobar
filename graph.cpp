@@ -128,12 +128,14 @@ auto dijkstra_algorithm(std::unique_ptr<graph_class>& g, std::vector<int> parent
 	return parent;
 }
 
-auto print_shortest_path(const int v, std::vector<int> parent, const int graph_number) -> void
+auto print_shortest_path(const int v, std::vector<int> parent, const int stop) -> void
 {
-	if (v > 0 && v < graph_number + 1 && parent[v] != -1)
+	std::cout << v; 
+	auto tmp = 0;
+	while(tmp != stop)
 	{
-		std::cout << parent[v] << "->";
-		print_shortest_path(parent[v], parent, graph_number);
+		tmp = parent[v];
+		std::cout << "->" << parent[v];
 	}
 }
 
@@ -150,7 +152,7 @@ auto print_distances(const int start, std::vector<int> distance, const int graph
 
 auto test_graph(void) -> void
 {
-	const auto node_number = 10;
+	const auto node_number = 5;
 
 	std::unique_ptr<graph_class> my_graph(new graph_class(false, node_number));
 
