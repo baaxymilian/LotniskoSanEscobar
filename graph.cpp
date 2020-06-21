@@ -131,11 +131,11 @@ auto dijkstra_algorithm(std::unique_ptr<graph_class>& g, std::vector<int> parent
 auto print_shortest_path(const int v, std::vector<int> parent, const int stop) -> void
 {
 	std::cout << v; 
-	auto tmp = 0;
+	auto tmp = v;
 	while(tmp != stop)
 	{
-		tmp = parent[v];
-		std::cout << "->" << parent[v];
+		std::cout << "->" << parent[tmp];
+		tmp = parent[tmp];
 	}
 }
 
