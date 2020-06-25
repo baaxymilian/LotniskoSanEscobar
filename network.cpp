@@ -76,6 +76,19 @@ network_class::network_class(std::unique_ptr<graph_class>& g, const int capital_
 	this->parent = parent;
 }
 
+auto network_class::sum_distances() const -> int
+{
+	auto sum = 0;
+	for (auto i = 1; i < this->graph->node_number + 1; i++)
+	{
+		if (distance[i] != std::numeric_limits<int>::max() && i != capital_id)
+		{
+			sum += distance[i];
+		}
+	}
+	return sum;
+}
+
 auto network_class::print_shortest_path(const int start) const -> void
 {
 	std::cout << start; 

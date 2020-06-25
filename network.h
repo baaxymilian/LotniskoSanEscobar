@@ -22,6 +22,7 @@ public:
     network_class();
 	network_class(std::unique_ptr<graph_class>&, const int);
 
+    auto sum_distances() const -> int;
     auto print_shortest_path(int) const -> void;
     auto print_distances() const -> void;
 
