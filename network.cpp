@@ -28,22 +28,16 @@ network_class::network_class(std::unique_ptr<graph_class>& g, const int capital_
 	std::vector<int> distance;
 	std::vector<int> parent;
 
-	auto v_tmp = 1;
+	auto v_tmp = capital_id;
 
 	for (auto i = 0; i < this->graph->node_number + 1; i++)
 	{
-		if(i < 2)
-		{
-			discovered.push_back(false);
-			distance.push_back(0);
-			parent.push_back(-1);
-		}else
-		{
-			discovered.push_back(false);
-			distance.push_back(weight_max);
-			parent.push_back(-1);			
-		}
+		discovered.push_back(false);
+		distance.push_back(weight_max);
+		parent.push_back(-1);			
 	}
+	distance[this->capital_id] = 0;
+
 
 	while (discovered[v_tmp] == false)
 	{
