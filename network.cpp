@@ -2,6 +2,9 @@
 #include <limits>
 
 #include "network.h"
+#include "graph.h"
+
+constexpr int weight_max = 100000;
 
 network_class::network_class()
 {   
@@ -13,9 +16,9 @@ network_class::network_class()
 
 }
 
-network_class::network_class(const graph_class& graph, const int capital_id)
+network_class::network_class(std::unique_ptr<graph_class>& g, const int capital_id)
 {
-	this->graph = new graph_class(graph);
+	this->graph = new graph_class(*g);
 	this->capital_id = capital_id;
 
 	/*
@@ -29,9 +32,17 @@ network_class::network_class(const graph_class& graph, const int capital_id)
 
 	for (auto i = 0; i < this->graph->node_number + 1; i++)
 	{
-		discovered.push_back(false);
-		distance.push_back(std::numeric_limits<int>::max());
-		parent.push_back(-1);
+		if(i < 2)
+		{
+			discovered.push_back(false);
+			distance.push_back(0);
+			parent.push_back(-1);
+		}else
+		{
+			discovered.push_back(false);
+			distance.push_back(weight_max);
+			parent.push_back(-1);			
+		}
 	}
 
 	while (discovered[v_tmp] == false)
@@ -52,7 +63,7 @@ network_class::network_class(const graph_class& graph, const int capital_id)
 		}
 
 		auto smallest_distance = std::numeric_limits<int>::max();
-		for (auto i = 1; i < this->graph->node_number; i++)
+		for (auto i = 1; i < this->graph->node_number + 1; i++)
 		{
 			if (!discovered[i] && (distance[i] < smallest_distance))
 			{
@@ -75,7 +86,7 @@ auto network_class::print_shortest_path(const int start) const -> void
 {
 	std::cout << start; 
 	auto tmp = start;
-	while(tmp != capital_id)
+	while (tmp != capital_id)
 	{
 		std::cout << "->" << this->parent[tmp];
 		tmp = this->parent[tmp];
@@ -83,13 +94,13 @@ auto network_class::print_shortest_path(const int start) const -> void
 	std::cout << std::endl; 
 }
 
-auto network_class::print_distances(const int start) const -> void
+auto network_class::print_distances() const -> void
 {
 	for (auto i = 1; i < this->graph->node_number + 1; i++)
 	{
-		if (distance[i] != std::numeric_limits<int>::max())
+		if (distance[i] != std::numeric_limits<int>::max() && i != capital_id)
 		{
-			std::cout << "Shortest distance from " << start << "to " << i << " is: " << distance[i] << std::endl;
+			std::cout << "Shortest distance from " << this->capital_id << " to " << i << " is: " << distance[i] << std::endl;
 		}
 	}
 
