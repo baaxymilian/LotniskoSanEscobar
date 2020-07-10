@@ -1,9 +1,6 @@
 /**
   @file graph.h
   @brief Implementation graph in C++.
-  @version 1.0
-  @date 2020-06-05
-  @author Jakub Brzezowski
 */
 
 #pragma once
@@ -16,9 +13,6 @@
   @class edge_node
   @brief Implementation of basics elements of graphs in combination simplified
   usage in graph class.
-  @version 1.0
-  @date 2020-06-05
-  @author Jakub Brzezowski
 */
 class edge_node
 {
@@ -35,9 +29,6 @@ public:
 /**
   @class graph_class
   @brief Implementation of mathematical graph
-  @version 1.0
-  @date 2020-06-05
-  @author Jakub Brzezowski
 */
 class graph_class
 {
