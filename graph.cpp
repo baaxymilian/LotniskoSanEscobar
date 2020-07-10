@@ -69,9 +69,9 @@ auto graph_class::insert_edge(const int x, const int y, const int weight, const 
 	{
 		throw "You cannot create inbound and outbound highway from the same city";
 	}
-	if (weight <= 0)
+	if (weight <= 0 || weight >= 10000)
 	{
-		throw "Weight must be positive";
+		throw "Weight must be positive and less than 10 000";
 	}
 	if (x > 0 && x < (this->node_number + 1) && y > 0 && y < (this->node_number + 1))
 	{
