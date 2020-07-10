@@ -67,11 +67,11 @@ auto graph_class::insert_edge(const int x, const int y, const int weight, const 
 {
 	if (x == y)
 	{
-		throw "You cannot create inbound and outbound highway from the same city";
+		std::cout << "You cannot create inbound and outbound highway from the same city" << std::endl;
 	}
 	if (weight <= 0 || weight >= 10000)
 	{
-		throw "Weight must be positive and less than 10 000";
+		std::cout << "Weight must be positive and less than 10 000" << std::endl;
 	}
 	if (x > 0 && x < (this->node_number + 1) && y > 0 && y < (this->node_number + 1))
 	{
@@ -84,6 +84,52 @@ auto graph_class::insert_edge(const int x, const int y, const int weight, const 
 		}
 	}
 
+}
+
+auto graph_class::remove_edge(const int x, const int y, const bool is_directed) const -> void
+{
+	if (x > 0 && x < (this->node_number + 1) && y > 0 && y < (this->node_number + 1))
+	{
+		auto* tmp = this->edges[x];
+		auto* prev_tmp = tmp;
+		auto valid_flag = false;
+
+		while (tmp != nullptr)
+		{
+			const auto v_neighbor = tmp->number;
+			if (v_neighbor == y)
+			{
+				valid_flag = true;
+				break;
+			}
+			prev_tmp = tmp;
+			tmp = tmp->next;
+		}
+
+		if (tmp == this->edges[x])
+		{
+			this->edges[x] = tmp->next;
+		}else
+		{
+			prev_tmp->next = tmp->next;
+		}
+		
+		delete tmp;
+		
+
+		if (!valid_flag)
+		{
+			std::cout << "Nodes are not connected, cannot remove edge" << std::endl;
+		}else{
+			if (!is_directed)
+			{
+				remove_edge(y, x, true);
+			}
+		}
+
+	}else{
+		std::cout << "Cannot remove edge" << std::endl;
+	}
 }
 
 void graph_class::print() const

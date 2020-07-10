@@ -50,7 +50,8 @@ public:
 	graph_class(bool, int);
 	graph_class(const graph_class&);
 
-	auto insert_edge(int, int, int, bool) const -> void;
+  auto insert_edge(int, int, int, bool) const -> void;
+  auto remove_edge(int, int, bool) const -> void;
 	auto print() const -> void;
 };
 
