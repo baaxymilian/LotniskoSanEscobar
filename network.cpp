@@ -11,9 +11,9 @@ network_class::network_class()
     std::vector<int> empty_v;
 	this->graph = new graph_class;
     this->capital_id = 0;
-    this->distance = empty_v;
+    this->is_connected = false;
+	this->distance = empty_v;
     this->parent = empty_v;
-
 }
 
 network_class::network_class(std::unique_ptr<graph_class>& g, const int capital_id)
@@ -71,7 +71,17 @@ network_class::network_class(std::unique_ptr<graph_class>& g, const int capital_
 	/*
 	End Dijkstra Algorithm
 	*/
+	auto connected_flag = true;
+	for (auto i = 1; i < this->graph->node_number + 1; i++)
+	{
+		if (i != this->capital_id && parent[i] == -1)
+		{
+			connected_flag = false;
+			break;
+		}
+	}
 
+	this->is_connected = connected_flag;
 	this->distance = distance;
 	this->parent = parent;
 }
@@ -110,5 +120,16 @@ auto network_class::print_distances() const -> void
 			std::cout << "Shortest distance from " << this->capital_id << " to " << i << " is: " << distance[i] << std::endl;
 		}
 	}
+
+}
+
+auto network_class::print_is_connected() const -> void
+{
+	std::cout << "This graph is ";
+	if (!this->is_connected)
+	{
+		std::cout << "not ";
+	}
+	std::cout << "connected" << std::endl;
 
 }

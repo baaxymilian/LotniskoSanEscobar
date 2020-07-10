@@ -16,6 +16,7 @@ class network_class
 public:
 	graph_class* graph; /*!< Custom graph class */
     int capital_id;
+    bool is_connected;
 	std::vector<int> distance;
     std::vector<int> parent;
 
@@ -24,6 +25,7 @@ public:
 
     auto sum_distances() const -> int;
     auto print_shortest_path(int) const -> void;
+    auto print_is_connected() const -> void;
     auto print_distances() const -> void;
 
 };
