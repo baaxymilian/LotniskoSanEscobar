@@ -11,3 +11,20 @@ odcinków sieci autostrad w naszym kraju. Sieć autostrad na planach ma kształt
 wierzchołkami są poszczególne miasta. Napisz algorytm, który ustali, który odcinek sieci
 autostrad należy poświęcić pod pas startowy, tak aby suma odległości ze stolicy kraju, Santo
 Subito, do pozostałych miast pozostała jak najmniejsza.
+
+## Wprowadzanie z pliku:
+
+Program korzysta z pliku input.txt zapisanego według ścisłego klucza:
+
+X Y Z 
+A1 B1 C1
+A2 B2 C3 … 
+
+X – wierzchołek startowy – stolica 
+Y – łączna liczba węzłów 
+Z – łączna liczba krawędzi 
+
+Ax Bx Cx – wprowadzanie krawędzi x
+A – pierwszy wierzchołek 
+B – drugi wierzchołek 
+C – waga krawędzi
