@@ -17,14 +17,21 @@ Subito, do pozostałych miast pozostała jak najmniejsza.
 Program korzysta z pliku input.txt zapisanego według ścisłego klucza:
 
 X Y Z 
+
 A1 B1 C1
+
 A2 B2 C3 … 
 
 X – wierzchołek startowy – stolica 
+
 Y – łączna liczba węzłów 
+
 Z – łączna liczba krawędzi 
 
 Ax Bx Cx – wprowadzanie krawędzi x
+
 A – pierwszy wierzchołek 
+
 B – drugi wierzchołek 
+
 C – waga krawędzi
