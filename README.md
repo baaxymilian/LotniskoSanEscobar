@@ -35,3 +35,5 @@ A – pierwszy wierzchołek
 B – drugi wierzchołek 
 
 C – waga krawędzi
+
+Kolejne wierzchołki powinny być wprowadzane inkrementalnie, tzn. jeśli w grafie jest 10 wierzchołków należy wykorzystać numerację od 1 do 10.
