@@ -39,11 +39,14 @@ auto main() -> int
 		auto temp_node_a = 0;
 		auto temp_node_b = 0;
 		auto temp_edge_weight = 0;
+		int edges_tab[total_edges][2];
 
 		for (auto i = 0; i < total_edges; i++)
 		{
 			input_file >> temp_node_a >> temp_node_b >> temp_edge_weight;
 			my_graph->insert_edge(temp_node_a, temp_node_b, temp_edge_weight, false);
+			edges_tab[i][0] = temp_node_a;
+			edges_tab[i][1] = temp_node_b;
 			if ((temp_node_a > total_nodes) || (temp_node_b > total_nodes))
 			{
 				throw "Incorrect number of a node (nodes should be numbered incrementally)";
@@ -64,9 +67,9 @@ auto main() -> int
 		
 		//std::unique_ptr<graph_class> new_graph(new graph_class(*my_graph));
 
-		graph_class* new_graph = new graph_class(*my_graph);
+		//graph_class* new_graph = new graph_class(*my_graph);
 
-		my_graph->print();
+		//my_graph->print();
 
 
 		//parent = dijkstra_algorithm(my_graph, parent, distance, 1);
@@ -83,9 +86,13 @@ auto main() -> int
 		//new_graph->print();
 
 		//my_network->print_shortest_path(5);
-		my_network->print_shortest_path(5);
+		//my_network->print_shortest_path(5);
 
-		my_network->print_distances();
+
+		//my_network->print_distances();
+		//my_network->print_is_connected();
+		//std::cout << my_network->sum_distances() << std::endl;
+
 
 	}
 	catch (std::string& msg)
