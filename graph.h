@@ -41,9 +41,14 @@ public:
 	graph_class(bool, int);
 	graph_class(const graph_class&);
 
+  /* node1, node2, weight, is directed */
   auto insert_edge(int, int, int, bool) const -> void;
+  
+   /* node1, node2, is directed */
   auto remove_edge(int, int, bool) const -> void;
-	auto print() const -> void;
+	
+  /*print out graph info*/
+  auto print() const -> void;
 };
 
 #endif // !GRAPH_H

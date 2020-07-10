@@ -58,10 +58,6 @@ auto main() -> int
 			}
 		}
 		
-		// sprawdzenie poprawnosci wczytanych wartosci
-		// indeks 0 - pierwszy wierzcholek
-		// indeks 1 - drugi wierzcholek
-		// indeks 2 - waga polaczenia
 		auto best_distance = std::numeric_limits<int>::max();
 		auto best_iteration = 0;
 

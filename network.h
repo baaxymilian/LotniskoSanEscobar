@@ -23,9 +23,16 @@ public:
     network_class();
 	network_class(std::unique_ptr<graph_class>&, const int);
 
+    /* Print out sum of all shortest distances from capital to every other node*/
     auto sum_distances() const -> int;
+
+    /* Print out shortest path from input node to capital node*/
     auto print_shortest_path(int) const -> void;
+    
+    /* Print out information is graph connected or not*/
     auto print_is_connected() const -> void;
+    
+    /* Print out distances from capital to every other node*/
     auto print_distances() const -> void;
 
 };
