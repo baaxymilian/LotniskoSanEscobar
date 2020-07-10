@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include <limits>
 
 #include "network.h"
 #include "graph.h"
@@ -61,38 +62,33 @@ auto main() -> int
 		// indeks 0 - pierwszy wierzcholek
 		// indeks 1 - drugi wierzcholek
 		// indeks 2 - waga polaczenia
-		// 
+		auto best_distance = std::numeric_limits<int>::max();
+		auto best_iteration = 0;
 
-		std::unique_ptr<network_class> my_network(new network_class(my_graph, 1));
-		
-		//std::unique_ptr<graph_class> new_graph(new graph_class(*my_graph));
+		std::unique_ptr<graph_class> current_graph(new graph_class(*my_graph));
 
-		//graph_class* new_graph = new graph_class(*my_graph);
+		for(auto i = 0; i < total_edges; i++)
+		{
+			std::unique_ptr<graph_class> current_graph(new graph_class(*my_graph));
+			current_graph->remove_edge(edges_tab[i][0], edges_tab[i][1], false);
+			std::unique_ptr<network_class> my_network(new network_class(current_graph, starting_node));
+			if(my_network->is_connected == true){
+				if(best_distance > my_network->sum_distances())
+				{
+					best_distance = my_network->sum_distances();
+					best_iteration = i;
+				}
+			}
+		}
 
-		//my_graph->print();
-
-
-		//parent = dijkstra_algorithm(my_graph, parent, distance, 1);
-
-		/*std::cout << new_graph->edges[2]->next->number;
-		std::cout << my_graph->edges[2]->next->number;
-
-		++my_graph->edges[2]->next->number;
-
-		std::cout << new_graph->edges[2]->next->number;
-		std::cout << my_graph->edges[2]->next->number;*/
-
-
-		//new_graph->print();
-
-		//my_network->print_shortest_path(5);
-		//my_network->print_shortest_path(5);
-
-
-		//my_network->print_distances();
-		//my_network->print_is_connected();
-		//std::cout << my_network->sum_distances() << std::endl;
-
+		if (best_iteration != 0)
+		{
+			std::cout << "Najlepiej usunac polaczenie miedzy miastami " << edges_tab[best_iteration][0] << " i " << edges_tab[best_iteration][1] << std::endl;
+			std::cout << "Suma odleglosci od stolicy wyniesie wtedy " << best_distance << std::endl;
+		}else
+		{
+			std::cout << "Nie udalo sie znalezc dozwolonego miejsca na pas startowy" << std::endl;
+		}
 
 	}
 	catch (std::string& msg)
