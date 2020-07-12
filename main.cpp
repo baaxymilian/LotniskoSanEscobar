@@ -87,7 +87,7 @@ auto main() -> int
 		}
 
 	}
-	catch (std::string& msg)
+	catch (const char* msg)
 	{
 		std::cerr << msg << std::endl;
 		return 1;
