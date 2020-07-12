@@ -80,7 +80,7 @@ auto main() -> int
 		if (best_iteration != 0)
 		{
 			std::cout << "Najlepiej usunac polaczenie miedzy miastami " << edges_tab[best_iteration][0] << " i " << edges_tab[best_iteration][1] << std::endl;
-			std::cout << "Suma odleglosci od stolicy wyniesie wtedy " << best_distance << std::endl;
+			std::cout << "Suma odleglosci od stolicy (wierzcholek numer " << starting_node << ") wyniesie wtedy " << best_distance << std::endl;
 		}else
 		{
 			std::cout << "Nie udalo sie znalezc dozwolonego miejsca na pas startowy" << std::endl;
