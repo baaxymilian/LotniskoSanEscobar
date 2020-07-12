@@ -48,7 +48,7 @@ auto main() -> int
 			my_graph->insert_edge(temp_node_a, temp_node_b, temp_edge_weight, false);
 			edges_tab[i][0] = temp_node_a;
 			edges_tab[i][1] = temp_node_b;
-			if ((temp_node_a > total_nodes) || (temp_node_b > total_nodes))
+			if ((temp_node_a > total_nodes) || (temp_node_b > total_nodes) || (temp_node_b < 1) || (temp_node_a < 1))
 			{
 				throw "Incorrect number of a node (nodes should be numbered incrementally)";
 			}
