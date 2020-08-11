@@ -50,7 +50,6 @@ graph_class::graph_class(const graph_class& parent)
 	for (auto i = 1; i < this->node_number + 1; i++)
 	{
 		this->edges[i] = new edge_node;
-		
 	}
 	for (auto v_tmp = 1; v_tmp < node_number + 1; v_tmp++)
 	{
@@ -59,8 +58,8 @@ graph_class::graph_class(const graph_class& parent)
 		{
 			this->insert_edge(tmp->number, v_tmp, tmp->weight, true);
 			tmp = tmp->next;
-		}
-	}	
+        }
+	}
 }
 
 auto graph_class::insert_edge(const int x, const int y, const int weight, const bool is_directed) const -> void
@@ -113,9 +112,7 @@ auto graph_class::remove_edge(const int x, const int y, const bool is_directed) 
 		{
 			prev_tmp->next = tmp->next;
 		}
-		
 		delete tmp;
-		
 
 		if (!valid_flag)
 		{

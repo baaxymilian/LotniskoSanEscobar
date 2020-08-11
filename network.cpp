@@ -7,7 +7,7 @@
 constexpr int weight_max = 100000;
 
 network_class::network_class()
-{   
+{
     std::vector<int> empty_v;
 	this->graph = new graph_class;
     this->capital_id = 0;
@@ -34,7 +34,7 @@ network_class::network_class(std::unique_ptr<graph_class>& g, const int capital_
 	{
 		discovered.push_back(false);
 		distance.push_back(weight_max);
-		parent.push_back(-1);			
+		parent.push_back(-1);
 	}
 	distance[this->capital_id] = 0;
 
@@ -65,7 +65,7 @@ network_class::network_class(std::unique_ptr<graph_class>& g, const int capital_
 				smallest_distance = distance[i];
 			}
 		}
-		
+
 	}
 
 	/*
@@ -101,14 +101,14 @@ auto network_class::sum_distances() const -> int
 
 auto network_class::print_shortest_path(const int start) const -> void
 {
-	std::cout << start; 
+	std::cout << start;
 	auto tmp = start;
 	while (tmp != capital_id)
 	{
 		std::cout << "->" << this->parent[tmp];
 		tmp = this->parent[tmp];
 	}
-	std::cout << std::endl; 
+	std::cout << std::endl;
 }
 
 auto network_class::print_distances() const -> void
