@@ -59,7 +59,7 @@ auto main() -> int
 		}
 		
 		auto best_distance = std::numeric_limits<int>::max();
-		auto best_iteration = 0;
+		auto best_iteration = -1;
 
 		std::unique_ptr<graph_class> current_graph(new graph_class(*my_graph));
 
@@ -77,7 +77,7 @@ auto main() -> int
 			}
 		}
 
-		if (best_iteration != 0)
+		if (best_iteration != -1)
 		{
 			std::cout << "Najlepiej usunac polaczenie miedzy miastami " << edges_tab[best_iteration][0] << " i " << edges_tab[best_iteration][1] << std::endl;
 			std::cout << "Suma odleglosci od stolicy (wierzcholek numer " << starting_node << ") wyniesie wtedy " << best_distance << std::endl;
