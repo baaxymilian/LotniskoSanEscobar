@@ -41,4 +41,7 @@ Kolejne wierzchołki powinny być wprowadzane inkrementalnie, tzn. jeśli w graf
 ## Kompilator:
 
 GCC, MinGW64
-g++ main.cpp graph.cpp network.cpp -std=c++17 -o lotnisko
+g++.exe -Wall -fexceptions -O2 -Wall  -c graph.cpp -o graph.o
+g++.exe -Wall -fexceptions -O2 -Wall  -c main.cpp -o main.o
+g++.exe -Wall -fexceptions -O2 -Wall  -c network.cpp -o network.o
+g++.exe  -o lotnisko.exe graph.o main.o network.o  -static-libstdc++ -static-libgcc -static -lpthread -s  
