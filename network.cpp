@@ -117,7 +117,7 @@ auto network_class::print_distances() const -> void
 	{
 		if (distance[i] != std::numeric_limits<int>::max() && i != capital_id)
 		{
-			std::cout << "Shortest distance from " << this->capital_id << " to " << i << " is: " << distance[i] << std::endl;
+			std::cout << "Najkrotsza odleglosc od " << this->capital_id << " do " << i << " wynosi: " << distance[i] << std::endl;
 		}
 	}
 
@@ -125,11 +125,11 @@ auto network_class::print_distances() const -> void
 
 auto network_class::print_is_connected() const -> void
 {
-	std::cout << "This graph is ";
+	std::cout << "Graf ";
 	if (!this->is_connected)
 	{
-		std::cout << "not ";
+		std::cout << "nie ";
 	}
-	std::cout << "connected" << std::endl;
+	std::cout << "jest spojny" << std::endl;
 
 }

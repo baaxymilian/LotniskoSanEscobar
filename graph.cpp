@@ -66,11 +66,11 @@ auto graph_class::insert_edge(const int x, const int y, const int weight, const 
 {
 	if (x == y)
 	{
-		throw "You cannot create inbound and outbound highway from the same city";
+		throw "Nie mozna stworzyc polaczenia wchodzacego i wychodzacego z tego samego wierzcholka";
 	}
 	if (weight <= 0 || weight >= 100000)
 	{
-		throw "Weight must be positive and less than 100 000";
+		throw "Waga krawedzi powinna byc dodatnia i mniejsza niz 100 000";
 	}
 	if (x > 0 && x < (this->node_number + 1) && y > 0 && y < (this->node_number + 1))
 	{
@@ -116,7 +116,7 @@ auto graph_class::remove_edge(const int x, const int y, const bool is_directed) 
 
 		if (!valid_flag)
 		{
-			throw "Nodes are not connected, cannot remove edge";
+			throw "Wierzcholki nie sa polaczane, nie mozna usunac krawedzi";
 		}else{
 			if (!is_directed)
 			{
@@ -133,7 +133,7 @@ void graph_class::print() const
 	{
 		if (this->edges[v] != nullptr)
 		{
-			std::cout << "Node " << v << " has neighbours: " << std::endl;
+			std::cout << "Wierzcholek " << v << " ma sasiadow: " << std::endl;
 			auto* current = this->edges[v];
 			while (current->number != 0)
 			{

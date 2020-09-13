@@ -18,10 +18,10 @@ auto main() -> int
 	{
 		if (!input_file.good())
 		{
-			throw "File was not opened successfully";
+			throw "Plik nie zostal otwarty poprawnie";
 		}
 
-		std::cout << "File was successfully opened" << std::endl;
+		std::cout << "Plik zostal otwarty poprawnie" << std::endl;
 
 		std::vector<int> distance;
 		std::vector<int> parent;
@@ -33,7 +33,7 @@ auto main() -> int
 
 		if (edges_max < total_edges)
 		{
-			throw "The number of edges is too high. Numer of edges is limited to: 1024";
+			throw "Liczba krawedzi jest zbyt duza. Maksymalna wartosc to: 1024";
 		}
 
 		std::unique_ptr<graph_class> my_graph(new graph_class(false, total_edges));
@@ -50,11 +50,11 @@ auto main() -> int
 			edges_tab[i][1] = temp_node_b;
 			if ((temp_node_a > total_nodes) || (temp_node_b > total_nodes) || (temp_node_b < 1) || (temp_node_a < 1))
 			{
-				throw "Incorrect number of a node (nodes should be numbered incrementally)";
+				throw "Niepoprawny numer wierzcholka (wierzcholki powinny byc numerowane w kolejnosci rosnacej)";
 			}
 			if (weight_max < temp_edge_weight)
 			{
-				throw "The edge weight is too big. Maximum weight is limited to: 100 000";
+				throw "Waga krawedzi jest zbyt duza. Maksymalna wartosc to: 100 000";
 			}
 		}
 		
