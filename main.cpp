@@ -88,11 +88,14 @@ auto main() -> int
 			std::cout << "Nie udalo sie znalezc dozwolonego miejsca na pas startowy" << std::endl;
 		}
 	}
+
 	catch (const char* msg)
 	{
 		std::cerr << msg << std::endl;
 		return 1;
 	}
+
+	std::cin.get(); 
 
 	return 0;
 }
