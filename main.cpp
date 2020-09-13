@@ -36,11 +36,11 @@ auto main() -> int
 			throw "Liczba krawedzi jest zbyt duza. Maksymalna wartosc to: 1024";
 		}
 
-		std::unique_ptr<graph_class> my_graph(new graph_class(false, total_edges));
+		std::unique_ptr<graph_class> my_graph(new graph_class(false, total_nodes));
 		auto temp_node_a = 0;
 		auto temp_node_b = 0;
 		auto temp_edge_weight = 0;
-		int edges_tab[total_edges][2];
+		int edges_tab[total_edges][3];
 
 		for (auto i = 0; i < total_edges; i++)
 		{
@@ -48,6 +48,7 @@ auto main() -> int
 			my_graph->insert_edge(temp_node_a, temp_node_b, temp_edge_weight, false);
 			edges_tab[i][0] = temp_node_a;
 			edges_tab[i][1] = temp_node_b;
+			edges_tab[i][2] = temp_edge_weight;
 			if ((temp_node_a > total_nodes) || (temp_node_b > total_nodes) || (temp_node_b < 1) || (temp_node_a < 1))
 			{
 				throw "Niepoprawny numer wierzcholka (wierzcholki powinny byc numerowane w kolejnosci rosnacej)";
@@ -79,13 +80,13 @@ auto main() -> int
 
 		if (best_iteration != -1)
 		{
-			std::cout << "Najlepiej usunac polaczenie miedzy miastami " << edges_tab[best_iteration][0] << " i " << edges_tab[best_iteration][1] << std::endl;
+			std::cout << "Najlepiej usunac polaczenie miedzy miastami " << edges_tab[best_iteration][0] << " i " << edges_tab[best_iteration][1] <<
+			" o wadze " << edges_tab[best_iteration][2] << std::endl;
 			std::cout << "Suma odleglosci od stolicy (wierzcholek numer " << starting_node << ") wyniesie wtedy " << best_distance << std::endl;
 		}else
 		{
 			std::cout << "Nie udalo sie znalezc dozwolonego miejsca na pas startowy" << std::endl;
 		}
-
 	}
 	catch (const char* msg)
 	{
