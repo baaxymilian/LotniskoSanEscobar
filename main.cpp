@@ -41,6 +41,7 @@ auto main() -> int
 		auto temp_node_b = 0;
 		auto temp_edge_weight = 0;
 		int edges_tab[total_edges][3];
+		int tmp_edge_weight[total_edges];
 
 		for (auto i = 0; i < total_edges; i++)
 		{
@@ -49,6 +50,17 @@ auto main() -> int
 			edges_tab[i][0] = temp_node_a;
 			edges_tab[i][1] = temp_node_b;
 			edges_tab[i][2] = temp_edge_weight;
+			tmp_edge_weight[i] = temp_edge_weight;
+			for(auto j = 0; j < total_edges;j++)
+            {
+                if(i != j)
+                {
+                    if(edges_tab[i][0] == edges_tab[j][0] && edges_tab[i][1] == edges_tab[j][1] && temp_edge_weight == tmp_edge_weight[j] )
+                    {
+                        throw "Podano niepoprawna ilosc krawedzi";
+                    }
+                }
+            }
 			if ((temp_node_a > total_nodes) || (temp_node_b > total_nodes) || (temp_node_b < 1) || (temp_node_a < 1))
 			{
 				throw "Niepoprawny numer wierzcholka (wierzcholki powinny byc numerowane w kolejnosci rosnacej)";
